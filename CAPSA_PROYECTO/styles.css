@@ -1,0 +1,476 @@
+.background {
+    background-color: #E1E1E1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    color: #4A90E2;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #dfe4eb;
+    padding: 10px 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.logo img {
+    width: 150px;
+    height: auto;
+    max-height: none;
+}
+
+.navbar-logo img {
+    height: 80px;
+    width: auto;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    position: relative;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    padding: 10px 15px;
+    display: block;
+}
+
+nav ul li:hover .submenu {
+    display: block;
+}
+
+.navbar-nav .nav-link {
+    color: white;
+    /* Color por defecto */
+    transition: color 0.3s ease;
+    /* Suaviza la transición */
+}
+
+.navbar-nav .nav-link:hover {
+    color: #4A91E2;
+    /* Color azul al pasar el cursor */
+}
+
+.navbar-toggler-icon {
+    background-color: #4A90E2;
+    /* Cambia el color según tu necesidad */
+}
+
+.submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #4A90E2;
+}
+
+.submenu li a {
+    padding: 10px;
+    color: white;
+}
+
+.text-section {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: left;
+    flex-direction: column;
+    margin-top: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+.text-section h2 {
+    text-align: center;
+    font-size: 40px;
+}
+
+.text-section h1 {
+    font-size: 80px;
+    color: #1855d7;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    position: relative;
+    top: -30px;
+}
+
+.text-section p {
+    margin-top: 10px;
+    font-size: 20px;
+    color: #1855d7;
+    font-weight: bold;
+    text-align: left;
+    width: 100%;
+    position: relative;
+    top: -30px;
+}
+
+.text-section .btn {
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    background-color: transparent;
+    border: 2px solid #2964a7;
+    color: #2964a7;
+    text-transform: uppercase;
+    font-weight: bold;
+    z-index: 10;
+}
+
+.text-section .btn:hover {
+    background-color: #4d82be;
+    color: #2964a7;
+}
+
+.intro-section {
+    background-size: cover;
+    background-position: center;
+    height: 50vh;
+}
+
+.card {
+    border: none;
+    background-color: transparent;
+}
+
+.info-box {
+    background-color: rgba(26, 135, 98, 0.9);
+    color: #000000;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 10px;
+    flex: 1;
+}
+
+.card-title {
+    color: #ffcc00;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.card-text {
+    color: #000000;
+    font-size: 16px;
+}
+
+@media (max-width: 768px) {
+    .card {
+        margin-bottom: 20px;
+    }
+}
+
+.carrusel {
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    height: 600px;
+    margin: -6px 0 20px 0;
+    box-sizing: border-box;
+}
+
+.team-section {
+    text-align: center;
+    padding: 50px 20px;
+    position: relative;
+}
+
+.section-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #2C3E50;
+    margin-bottom: 30px;
+    position: relative;
+    display: inline-block;
+    z-index: 1;
+}
+
+.section-bar {
+    position: absolute;
+    width: 100%;
+    height: 250px;
+    background-color: #4A90E2;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 0;
+}
+
+.team-cards {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    z-index: 1;
+    position: relative;
+}
+
+.team-card {
+    background-color: #FFFFFF;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 280px;
+    min-height: 450px;
+    text-align: center;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-img-top {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+.card-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #2C3E50;
+    margin-bottom: 5px;
+}
+
+.card-subtitle {
+    font-size: 14px;
+    font-weight: bold;
+    color: #4A90E2;
+    margin-bottom: 10px;
+}
+
+.card-text {
+    font-size: 14px;
+    color: #4A4A4A;
+}
+
+@media (max-width: 768px) {
+    .team-cards {
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+
+.slide {
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: all 1s ease;
+}
+
+.descripcion {
+    background-color: #0d9d75;
+    color: white;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.descripcion h2 {
+    font-size: 2.5rem;
+    margin: 0;
+}
+
+.descripcion p {
+    font-size: 1.25rem;
+    margin: 0;
+}
+
+.contact-button-container {
+    text-align: center;
+    margin: 20px auto;
+    position: relative;
+    z-index: 1;
+}
+
+.contact-button {
+    background-color: #4A90E2;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.contact-button:hover {
+    background-color: #326cad;
+}
+
+footer {
+    background-color: #4a91e2;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    position: relative;
+    width: 100%;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.btn {
+    align-self: center;
+}
+
+.navbar {
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    /* Sombra suave */
+}
+
+.nav-link {
+    margin-right: 15px;
+    font-size: 16px;
+    transition: color 0.3s ease-in-out;
+}
+
+.nav-link:hover {
+    color: #FFD700;
+    /* Cambio de color al pasar el cursor */
+}
+
+.navbar-brand img {
+    height: 50px;
+    /* Altura del logo */
+    margin-right: 15px;
+}
+
+.btn-success {
+    background-color: #28a745;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    /* Sombra en el botón */
+}
+
+.navbar-logo {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-buttons {
+    display: flex;
+    gap: 20px;
+    margin-left: 30px;
+}
+
+.navbar-buttons button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.navbar-buttons button:hover {
+    background-color: #0056b3;
+}
+
+.btn-contacto {
+    background-color: #4C9BB8;
+    color: #FFFFFF;
+    border-radius: 8px;
+    padding: 10px 20px;
+    text-align: center;
+    display: inline-block;
+    font-size: 20px;
+    text-decoration: none;
+    margin-top: -60px;
+    margin-left: 50px;
+}
+
+.btn-contacto:hover {
+    background-color: #35d6a9;
+    text-decoration: none;
+}
+
+.content-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 40px auto;
+    max-width: 1200px;
+    padding: 20px;
+    gap: 20px;
+}
+
+.text-container {
+    flex: 1;
+    text-align: left;
+    padding: 20px;
+}
+
+.image-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    top: 5px;
+}
+
+.image-container video {
+    width: 500%;
+    max-width: 1000%px;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+    .content-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .image-container {
+        margin-top: 10px;
+    }
+}

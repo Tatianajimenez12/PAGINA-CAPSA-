@@ -1,0 +1,168 @@
+/* Fondo de pantalla */
+
+.background {
+    background-color: #E1E1E1;
+    /* Gris fuerte */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+
+/* Reset de estilos */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* Estilo para el logo más grande */
+
+.navbar-logo img {
+    height: 100px;
+    /* Ajuste del tamaño del logo */
+}
+
+
+/* Fondo y fuentes generales */
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: #f4f4f4;
+    color: #333;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+
+/* Estilos para el header */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #4A90E2;
+    color: white;
+    padding: 10px 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+header h1 {
+    font-size: 36px;
+    color: #FFFFFF;
+}
+
+
+/* Texto fuera del encabezado */
+
+.outside-header-text {
+    text-align: center;
+    font-size: 80px;
+    color: #2b7a5e;
+    /* Color azul solicitado */
+    margin: 20px 0;
+    font-weight: bold;
+}
+
+
+/* Sección de introducción */
+
+.intro {
+    background: none;
+    /* Quita el fondo gris */
+    padding: 10px 0;
+    text-align: center;
+}
+
+.intro h2 {
+    font-size: 34px;
+    /* Incrementa el tamaño de la fuente */
+    margin-bottom: 20px;
+    /* Espaciado debajo del título */
+    font-weight: bold;
+    /* Aplica negritas */
+}
+
+
+/* Estilo del texto de descripción */
+
+.intro p {
+    font-size: 23px;
+    /* Incrementa el tamaño de la fuente */
+    line-height: 1.8;
+    /* Ajusta el interlineado para mejor legibilidad */
+    font-weight: normal;
+    /* Quita las negritas */
+    text-align: justify;
+    /* Aplica la justificación del texto */
+    margin: 0;
+    /* Elimina márgenes */
+    max-width: 100%;
+    /* Permite que ocupe todo el ancho disponible */
+}
+
+
+/* Estilo de los servicios */
+
+.services {
+    background: #e1e1e1;
+    padding: 50px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 30px;
+}
+
+.service-item {
+    width: 30%;
+    /* Ajusta al 30% del contenedor */
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.service-item img {
+    width: 200px;
+    /* Aumenté el tamaño de las imágenes */
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+.service-item h3 {
+    font-size: 24px;
+    /* Aumenté el tamaño del texto del título */
+    margin-bottom: 10px;
+    color: #444;
+}
+
+.service-item p {
+    font-size: 18px;
+    line-height: 1.5;
+    color: #666;
+}
+
+
+/* Footer */
+
+footer {
+    background-color: #4A90E2;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    position: relative;
+    width: 100%;
+}
+
+footer p {
+    font-size: 14px;
+}

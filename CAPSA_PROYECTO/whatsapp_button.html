@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Botón de WhatsApp</title>
+    <link rel="stylesheet" href="whatsapp_button.css">
+</head>
+
+<body>
+    <div class="whatsapp-container">
+        <a href="javascript:void(0)" class="whatsapp-button" id="whatsappButton">
+            <img src="whatsapp.png" alt="WhatsApp">
+        </a>
+        <div class="whatsapp-qr" id="whatsappQR">
+            <div class="qr-content">
+                <img src="QR.jpeg" alt="Código QR de WhatsApp">
+                <p>¡Hola! Escríbenos para más información</p>
+                <!-- Actualiza el número aquí -->
+                <a href="https://wa.me/525548176178" target="_blank" class="open-chat">Ir al chat</a>
+                <button id="closeQR">Cerrar</button>
+            </div>
+        </div>
+    </div>
+    <script src="whatsapp_button.js"></script>
+</body>
+
+</html>

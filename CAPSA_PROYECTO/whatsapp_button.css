@@ -1,0 +1,63 @@
+/* Contenedor del botón flotante de WhatsApp */
+
+.whatsapp-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.whatsapp-button img {
+    width: 70px;
+    height: 70px;
+    cursor: pointer;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Contenedor del QR */
+
+.whatsapp-qr {
+    display: none;
+    position: absolute;
+    bottom: 70px;
+    right: 0;
+    width: 200px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.qr-content img {
+    width: 100px;
+    height: 100px;
+}
+
+.open-chat {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #25D366;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.open-chat:hover {
+    background-color: #128C7E;
+}
+
+#closeQR {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #f44336;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+}

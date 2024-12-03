@@ -1,0 +1,59 @@
+body {
+    background-color: #E1E1E1 !important;
+    /* Asegura que este color se aplique */
+}
+
+.d-grid {
+    margin-bottom: 30px;
+    /* Ajusta el valor para más o menos espacio */
+}
+
+.formulario-panel {
+    background-color: #bccbdc;
+    /* Cambié el fondo blanco a un gris suave */
+    padding: 20px;
+    border-radius: 10px;
+    /* Bordes redondeados para darle un mejor aspecto */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    /* Sombra para que destaque */
+}
+
+
+/* Espaciado adicional en el contenedor */
+
+.container {
+    margin-top: 80px;
+    /* Para dar un margen superior al formulario */
+}
+
+
+/* Fondo con opacidad */
+
+.form-container {
+    background-color: rgb(27, 25, 25);
+    /* Fondo blanco semi-transparente */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(51, 50, 50, 0.1);
+}
+
+
+/* Asegura que el contenido del formulario sea legible */
+
+form {
+    z-index: 1;
+}
+
+.btn-primary {
+    background-color: #2964a7;
+    /* Color de fondo original */
+    border-color: #2964a7;
+    /* Asegura que el borde coincida con el fondo */
+}
+
+.btn-primary:hover {
+    background-color: rgba(26, 135, 98, 0.9);
+    /* Nuevo color al pasar el cursor */
+    border-color: rgba(26, 135, 98, 0.9);
+    /* Asegura que el borde cambie al mismo color */
+}

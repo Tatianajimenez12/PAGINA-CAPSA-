@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAPSA - Inicio</title>
+    <link rel="stylesheet" href="trabajadores.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</head>
+
+<body>
+
+    <!-- Fondo de pantalla -->
+    <!-- Encabezado con el logo y menú -->
+    <header>
+        <div class="logo">
+            <img src="Logo.png" alt="Logo de CAPSA">
+        </div>
+        <nav class="navbar bg-body-tertiary fixed-top" style="background-color: #4a91e200 !important;">
+            <div class="container-fluid justify-content-end">
+                <!-- Marca / Logo -->
+                <!-- Botón de hamburguesa para el menú offcanvas -->
+                <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation" style="background-color: #4a91e200; border: none; padding: 0; box-shadow: none; margin: 10px 10px;">
+                    <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+                </button>
+
+                <!-- Menú Offcanvas -->
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menú</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+
+                    <div class="offcanvas-body">
+                        <!-- Lista de navegación -->
+                        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+
+                            <!-- Inicio con dropdown -->
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle active" aria-current="page" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: rgb(0, 0, 0);">
+                        Inicio
+                      </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Atención a quejas</a></li>
+                                    <li><a class="dropdown-item" href="#">Paquetes de salud</a></li>
+                                </ul>
+                            </li>
+
+                            <!-- Trabaja con nosotros -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" style="color: rgb(0, 0, 0);">Trabaja con nosotros</a>
+                            </li>
+
+                            <!-- Servicios -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" style="color: rgb(0, 0, 0);">Servicios</a>
+                            </li>
+
+                            <!-- Información para el paciente -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" style="color: rgb(0, 0, 0);">Información para el paciente</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+
+    </header>
+
+    <!-- Contenido principal -->
+    <main>
+        <section>
+            <div class="carta_perfi">
+                <div class="carta_header">
+                    <div class="avatar">
+                        <img src="https://cdn.pixabay.com/photo/2014/04/03/10/32/user-310807_960_720.png" alt="">
+                    </div>
+                    <div class="textos">
+                        <h3>Traziall Graphic</h3>
+                        <h4>Siguenos en:</h4>
+                    </div>
+                    <button type="button" id="carta_boton"><i class="fa fa-plus"></i></button>
+                </div>
+                <div class="carta_body">
+                    <div class="carta_contenido">
+                        <ul class="lista">
+                            <li><i class="fa fa-check"></i> Yenerson Hernandez</li>
+                            <li><i class="fa fa-check"></i> Colombia</li>
+                            <li><i class="fa fa-check"></i> Compartir</li>
+                        </ul>
+                        <div class="carta_pie">
+                            <button class="carta_boton" type="button">Ver mas</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+    <!-- Footer constante -->
+    <footer>
+        <p>&copy; 2024 CAPSA. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        let carta_perfi = document.querySelector('.carta_perfi');
+        let carta_boton = document.getElementById('carta_boton');
+        carta_boton.addEventListener('click', () => {
+            carta_perfi.classList.toggle('animacion');
+        });
+    </script>
+</body>
+
+</html>

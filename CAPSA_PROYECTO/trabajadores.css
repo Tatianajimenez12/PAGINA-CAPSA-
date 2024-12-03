@@ -1,0 +1,231 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    font-family: Arial;
+}
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* Header Styles */
+
+header {
+    background-color: #4a91e2;
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.logo img {
+    width: 100px;
+    /* Ancho fijo */
+    height: 100px;
+    /* Altura fija */
+    object-fit: contain;
+    /* Asegura que la imagen se ajuste sin estirarse o deformarse */
+}
+
+
+/* Main Content Styles */
+
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.carta_perfi img {
+    width: 100%;
+}
+
+.carta_perfi {
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    -moz-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    -o-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-flex-direction: column;
+    -moz-flex-direction: column;
+    -ms-flex-direction: column;
+    -o-flex-direction: column;
+    flex-direction: column;
+    background-color: #fff;
+    width: 330px;
+    position: relative;
+}
+
+.carta_perfi .carta_header {
+    display: flex;
+    width: 100%;
+    height: 120px;
+    -webkit-flex-wrap: wrap;
+    -moz-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    -o-flex-wrap: wrap;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: center;
+    position: absolute;
+    background-color: #1594A6;
+    top: 0;
+    padding-bottom: 15px;
+    text-align: center;
+    color: #fff;
+    transition: all ease-in 350ms;
+    z-index: 1;
+    border-radius: .75rem;
+    line-height: .2;
+}
+
+.carta_perfi .carta_header .textos h3 {
+    font-size: 1.3em;
+    margin-bottom: 0;
+}
+
+.carta_perfi .carta_header .textos h4 {
+    font-size: .8em;
+    font-style: italic;
+}
+
+.carta_perfi .carta_header .avatar {
+    display: block;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    background-color: #E1E8F0;
+    top: -50px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 5px solid #fff;
+    box-shadow: 0 0 4px 1px rgba(0, 0, 0, .1);
+}
+
+.carta_perfi .carta_header button {
+    border: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    font-size: .7em;
+    box-shadow: 0 0 5px 1px rgba(0, 0, 0, .25);
+    position: absolute;
+    top: -15px;
+    left: calc(50% + 50px + 3rem);
+    background-color: #fff;
+    cursor: pointer;
+    transform: rotate(0);
+    transition: transform ease-in 350ms;
+}
+
+.carta_perfi .carta_header button:hover {
+    background-color: #E9E9E9;
+}
+
+.carta_perfi .carta_body {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    width: 100%;
+    height: 0px;
+    overflow: hidden;
+    padding-bottom: 20px;
+    transition: all ease-in 350ms;
+    box-shadow: 0 0 15px 2px rgba(0, 0, 0, .1), 0 0 8px 1px rgba(0, 0, 0, .1);
+    border-radius: .75rem;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.carta_perfi .carta_body ul {
+    margin-bottom: 1.75rem;
+    list-style: none;
+}
+
+.carta_perfi .carta_body ul li {
+    margin-bottom: .5rem;
+}
+
+.carta_perfi .carta_body ul i {
+    margin-right: 1rem;
+    display: inline-block;
+    transform: scale(1.25);
+}
+
+.carta_perfi .carta_body ul li:nth-child(1) i {
+    color: #668EE8;
+}
+
+.carta_perfi .carta_body ul li:nth-child(2) i {
+    color: #5BC7B1;
+}
+
+.carta_perfi .carta_body ul li:nth-child(3) i {
+    color: #FF5050;
+}
+
+.carta_perfi .carta_body .carta_pie {
+    text-align: center;
+}
+
+.carta_perfi .carta_body .carta_boton {
+    padding: 10px 25px;
+    border-radius: .25rem;
+    border: 0;
+    background-color: #1594A6;
+    color: #fff;
+    cursor: pointer;
+}
+
+.carta_perfi .carta_body .carta_boton:active {
+    background-color: #188291;
+}
+
+.carta_perfi .carta_contenido {
+    transform: translateY(35rem);
+    transition: all ease-in 550ms;
+}
+
+.carta_perfi.animacion .carta_body {
+    height: 400px;
+    opacity: 1;
+    visibility: visible;
+}
+
+.carta_perfi.animacion .carta_header {
+    top: 5rem;
+    border-radius: 0;
+}
+
+.carta_perfi.animacion .carta_contenido {
+    transform: translateY(0);
+}
+
+.carta_perfi.animacion .carta_header button {
+    transform: rotate(45deg);
+}
+
+footer {
+    background-color: #4a91e2;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+}
