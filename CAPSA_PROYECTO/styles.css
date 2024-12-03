@@ -45,12 +45,13 @@ nav ul {
 
 nav ul li {
     position: relative;
+    margin-right: 65px;
 }
 
 nav ul li a {
     text-decoration: none;
     color: rgb(255, 255, 255);
-    padding: 10px 15px;
+    padding: 12px 20px;
     display: block;
 }
 
@@ -92,12 +93,20 @@ nav ul li:hover .submenu {
     position: relative;
     display: flex;
     justify-content: flex-start;
+    /* Mueve hacia la izquierda */
     align-items: center;
-    text-align: left;
     flex-direction: column;
-    margin-top: 0;
-    width: 100%;
+    text-align: center;
+    /* Centra el contenido */
+    margin-left: -7%;
+    /* Ajusta para mover más hacia la izquierda */
+    width: auto;
     z-index: 1;
+}
+
+.text-section img {
+    margin-top: 0;
+    /* Si es necesario, ajusta también la imagen */
 }
 
 .text-section h2 {
@@ -132,10 +141,13 @@ nav ul li:hover .submenu {
 }
 
 .text-section .btn {
-    position: absolute;
-    top: -50px;
-    left: 50%;
-    transform: translateX(-50%);
+    position: relative;
+    /* Cambiado para alineación */
+    margin-top: 20px;
+    left: 60;
+    /* Centrado */
+    transform: none;
+    /* Elimina la transformación */
     padding: 10px 20px;
     background-color: transparent;
     border: 2px solid #2964a7;
@@ -420,7 +432,9 @@ footer {
     display: inline-block;
     font-size: 20px;
     text-decoration: none;
-    margin-top: -60px;
+    position: relative;
+    margin-top: -5%;
+    /* Ajusta la distancia vertical */
     margin-left: 50px;
 }
 
