@@ -1,0 +1,160 @@
+.zoom {
+    transition: transform 0.3s ease-in-out;
+}
+
+.zoom:hover {
+    transform: scale(1.1);
+}
+
+.convenio-card {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: center;
+    background-color: #fff;
+    /* Fondo blanco para contraste */
+}
+
+.convenio-card img {
+    width: 100%;
+    /* Ocupa todo el ancho del contenedor */
+    height: 200px;
+    /* Altura fija para consistencia */
+    object-fit: cover;
+    /* Ajusta la imagen sin deformarla */
+    border-bottom: 2px solid #4A91E2;
+}
+
+
+/* Fondo de la página */
+
+.background {
+    background-color: #E1E1E1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+
+/* Estilo general del cuerpo */
+
+body {
+    font-family: Arial, sans-serif;
+    color: #4A90E2;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* Estilo del encabezado */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #4A91E2;
+    color: white;
+}
+
+
+/* Logo dentro del encabezado */
+
+.logo img {
+    width: 150px;
+    height: auto;
+}
+
+
+/* Menú de navegación */
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    position: relative;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    padding: 10px 15px;
+    display: block;
+}
+
+nav ul li:hover .submenu {
+    display: block;
+}
+
+.submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #4A90E2;
+}
+
+.submenu li a {
+    padding: 10px;
+    color: white;
+}
+
+
+/* Footer */
+
+footer {
+    background-color: #4a91e2;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    position: relative;
+    width: 100%;
+    margin-top: 20px;
+}
+
+
+/* Estilo del logo dentro del navbar */
+
+.navbar-logo img {
+    height: 80px;
+    width: auto;
+}
+
+
+/* Estilo de los enlaces del navbar */
+
+.nav-link {
+    margin-right: 15px;
+    font-size: 16px;
+    transition: color 0.3s ease-in-out;
+}
+
+.nav-link:hover {
+    color: #FFD700;
+}
+
+
+/* Efecto hover en los botones */
+
+.navbar-buttons button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.navbar-buttons button:hover {
+    background-color: #0056b3;
+}
