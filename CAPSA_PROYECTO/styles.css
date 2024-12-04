@@ -338,6 +338,17 @@ nav ul li:hover .submenu {
     background-color: #326cad;
 }
 
+.img-fluid {
+    border-radius: 15px;
+    /* Ajusta el valor para redondear más o menos */
+    width: 50%;
+    /* Asegura que la imagen sea responsiva */
+    max-width: 100px;
+    /* Tamaño máximo opcional */
+    height: auto;
+    /* Mantiene las proporciones */
+}
+
 footer {
     background-color: #4a91e2;
     color: white;
