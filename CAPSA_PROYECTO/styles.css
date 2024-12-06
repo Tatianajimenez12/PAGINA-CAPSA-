@@ -171,6 +171,15 @@ nav ul li:hover .submenu {
 .card {
     border: none;
     background-color: transparent;
+    width: 300px;
+    height: 450px;
+}
+
+.card img {
+    height: 300px;
+    /* Cambia este valor según tus necesidades */
+    object-fit: cover;
+    /* Asegura que la imagen se ajuste correctamente */
 }
 
 .info-box {
@@ -259,7 +268,7 @@ nav ul li:hover .submenu {
 
 .card-img-top {
     border-radius: 50%;
-    width: 150px;
+    width: 200px;
     height: 150px;
     object-fit: cover;
     margin-bottom: 20px;
