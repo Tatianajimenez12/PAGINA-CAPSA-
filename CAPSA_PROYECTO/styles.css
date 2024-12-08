@@ -272,6 +272,14 @@ nav ul li:hover .submenu {
     height: 150px;
     object-fit: cover;
     margin-bottom: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-img-top:hover {
+    transform: scale(1.1);
+    /* Amplía ligeramente la imagen */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    /* Agrega sombra para un efecto de profundidad */
 }
 
 .card-title {
