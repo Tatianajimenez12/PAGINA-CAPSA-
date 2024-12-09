@@ -1,0 +1,262 @@
+/* Fondo de la página */
+
+.background {
+    background-color: #E1E1E1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+
+/* Estilo general del cuerpo */
+
+body {
+    font-family: Arial, sans-serif;
+    color: #4A90E2;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* Estilo del encabezado */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+
+/* Logo dentro del encabezado */
+
+.logo img {
+    width: 150px;
+    height: auto;
+    max-height: none;
+}
+
+
+/* Menú de navegación */
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    position: relative;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    padding: 10px 15px;
+    display: block;
+}
+
+nav ul li:hover .submenu {
+    display: block;
+}
+
+.submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #4A90E2;
+}
+
+.submenu li a {
+    padding: 10px;
+    color: white;
+}
+
+
+/* Estilo de las cards */
+
+.card {
+    border: 2px solid #0066CC !important;
+    background-color: #dee9ed !important;
+    max-width: 400px;
+    height: 350px;
+    margin: -10px auto;
+    padding: 20px 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    /* Agregamos transición para el efecto */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+/* Efecto hover: sacudida y cambio de color de borde */
+
+.card:hover {
+    transform: rotate(-3deg) translateY(-5px);
+    animation: shake 0.4s ease;
+    /* Aplicamos sacudida */
+    border-color: #FF5733;
+    /* Cambiamos el color del borde */
+}
+
+
+/* Animación de sacudida */
+
+@keyframes shake {
+    0%,
+    100% {
+        transform: rotate(0);
+    }
+    25% {
+        transform: rotate(-3deg);
+    }
+    50% {
+        transform: rotate(3deg);
+    }
+    75% {
+        transform: rotate(-1deg);
+    }
+}
+
+
+/* Estilo de las cajas de información */
+
+.info-box {
+    background-color: rgba(26, 135, 98, 0.9);
+    color: #000000;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+    flex: 1;
+}
+
+.card-text {
+    color: #000000;
+    font-size: 15px;
+}
+
+
+/* Efecto hover para botones */
+
+.text-section .btn {
+    position: absolute;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    background-color: transparent;
+    border: 2px solid #2964a7;
+    color: #2964a7;
+    text-transform: uppercase;
+    font-weight: bold;
+    z-index: 10;
+}
+
+.text-section .btn:hover {
+    background-color: #4d82be;
+    color: #2964a7;
+}
+
+
+/* Footer */
+
+footer {
+    background-color: #4a91e2;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    position: relative;
+    width: 100%;
+    margin-top: 20px;
+}
+
+
+/* Estilo del logo dentro del navbar */
+
+.navbar-logo img {
+    height: 80px;
+    width: auto;
+}
+
+
+/* Estilo de los enlaces del navbar */
+
+.nav-link {
+    margin-right: 15px;
+    font-size: 16px;
+    transition: color 0.3s ease-in-out;
+}
+
+.nav-link:hover {
+    color: #FFD700;
+}
+
+
+/* Efecto hover en los botones */
+
+.navbar-buttons button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.navbar-buttons button:hover {
+    background-color: #0056b3;
+}
+
+
+/* Estilo de la imagen dentro de las cards */
+
+.card-img-top {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    margin-top: -10px;
+}
+
+
+/* Estilo para los títulos y párrafos */
+
+.team-section h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 20px;
+    margin-top: -20px;
+}
+
+.team-section p {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 40px;
+    margin-top: 10px;
+}
+
+
+/* Títulos dentro de las cards (especialistas) */
+
+.card .card-title {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+
+/* Ajustes de la descripción */
+
+.card .card-description {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 10px;
+}

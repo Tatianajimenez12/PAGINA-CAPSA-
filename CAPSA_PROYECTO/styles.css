@@ -67,7 +67,7 @@ nav ul li:hover .submenu {
 }
 
 .navbar-nav .nav-link:hover {
-    color: #4A91E2;
+    color: #070345;
     /* Color azul al pasar el cursor */
 }
 
@@ -316,7 +316,7 @@ nav ul li:hover .submenu {
 }
 
 .descripcion {
-    background-color: #0d9d75;
+    background-color: #4a91e2;
     color: white;
     padding: 20px;
     border-radius: 5px;
