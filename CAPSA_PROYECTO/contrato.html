@@ -4,164 +4,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario de Postulación - CAPSA</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>CAPSA - Inicio</title>
     <link rel="stylesheet" href="contrato.css">
-
-    <!-- Bootstrap CSS -->
+    <link rel="shortcut icon" href="logocapsapestaña.png">
+    <link rel="stylesheet" href="whatsapp_button.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Bootstrap JavaScript y Popper.js -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"></script>
+    <!-- Bootstrap Bundle with Popper.js incluido -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
 </head>
 
 <body class="p-3 m-0 border-0 bd-example m-0 border-0">
+    <!-- Fondo de pantalla -->
+    <div class="background"></div>
 
+    <!-- Encabezado con el logo y menú -->
     <header>
-        <div class="logo">
-            <img src="logocapsa.jpeg" alt="Logo de CAPSA">
+        <div class="navbar-container">
+            <!-- Logo y título -->
+            <a href="index.html">
+                <div class="navbar-logo">
+                    <img src="logocapsa.png" alt="Logo CAPSA" style="height: 100px; width: auto;">
+                </div>
+            </a>
         </div>
-        <nav class="navbar bg-body-tertiary fixed-top" style="background-color: #4a91e200 !important;">
-            <div class="container-fluid justify-content-end">
-                <!-- Marca / Logo -->
-                <!-- Botón de hamburguesa para el menú offcanvas -->
-                <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation" style="background-color: #4a91e200; border: none; padding: 0; box-shadow: none; margin: 10px 10px;">
-                    <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+        <nav class="navbar navbar-expand-lg" style="background-color: #4A90E2;">
+            <div class="container">
+                <button class="navbar-toggler text-black" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
                 </button>
-
-                <!-- Menú Offcanvas -->
-                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-                    <div class="offcanvas-header">
-                        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menú</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                    </div>
-
-                    <div class="offcanvas-body">
-                        <!-- Lista de navegación -->
-                        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-
-                            <!-- Inicio con dropdown -->
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle active" aria-current="page" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: rgb(0, 0, 0);">
-                        Inicio
-                      </a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Atención a quejas</a></li>
-                                    <li><a class="dropdown-item" href="#">Paquetes de salud</a></li>
-                                </ul>
-                            </li>
-
-                            <!-- Trabaja con nosotros -->
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" style="color: rgb(0, 0, 0);">Trabaja con nosotros</a>
-                            </li>
-
-                            <!-- Servicios -->
-                            <li class="nav-item">
-                                <a class="nav-link" href="#sec-9758" style="color: rgb(0, 0, 0);">Servicios</a>
-                            </li>
-
-                            <!-- Información para el paciente -->
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" style="color: rgb(0, 0, 0);">Información para el paciente</a>
-                            </li>
-                        </ul>
-                    </div>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Quienes somos.html">¿Quiénes somos?</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#sec-9758">Servicios</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="nuestro-personal.html">Nuestro personal</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="convenios.html">Convenios</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contrato.html">Únete con nosotros</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="reseñas.html">Reseñas</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </nav>
-
-
     </header>
 
-    <div class="container mt-5">
+    <div class="formulario-panel">
+        <!-- Título de la Página -->
+        <h1 class="text-center mb-4">Únete a nuestro equipo de especialistas de salud a domicilio</h1>
 
-        <div class="formulario-panel">
-            <!-- Título de la Página -->
-            <h1 class="text-center mb-4">Únete a nuestro equipo de especialistas de salud a domicilio</h1>
+        <!-- Subtítulo -->
+        <p class="text-center mb-4">Estamos en búsqueda de profesionales comprometidos para brindar el mejor cuidado a nuestros pacientes. Si eres un especialista en salud domiciliaria, postúlate aquí.</p>
 
-            <!-- Subtítulo -->
-            <p class="text-center mb-4">Estamos en búsqueda de profesionales comprometidos para brindar el mejor cuidado a nuestros pacientes. Si eres un especialista en salud domiciliaria, postúlate aquí.</p>
+        <!-- Formulario de Postulación -->
+        <form>
+            <!-- Datos Personales -->
+            <h4 class="mb-3">Datos personales</h4>
+            <div class="mb-3">
+                <label for="nombreCompleto" class="form-label">Nombre completo</label>
+                <input type="text" class="form-control" id="nombreCompleto" required>
+            </div>
+            <div class="mb-3">
+                <label for="correoElectronico" class="form-label">Correo electrónico</label>
+                <input type="email" class="form-control" id="correoElectronico" required>
+            </div>
+            <div class="mb-3">
+                <label for="telefonoContacto" class="form-label">Teléfono de contacto</label>
+                <input type="tel" class="form-control" id="telefonoContacto" required>
+            </div>
+            <div class="mb-3">
+                <label for="direccion" class="form-label">Dirección</label>
+                <input type="text" class="form-control" id="direccion">
+            </div>
 
-            <!-- Formulario de Postulación -->
-            <form>
+            <!-- Información Profesional -->
+            <h4 class="mb-3">Información profesional</h4>
+            <div class="mb-3">
+                <label for="especialidad" class="form-label">Especialidad</label>
+                <select class="form-select" id="especialidad" required>
+                    <option value="">Seleccione una especialidad</option>
+                    <option value="cuidados_postoperatorios">Cuidados postoperatorios y paliativos</option>
+                    <option value="cuidados_geriatrico">Cuidados para adultos mayores (geriátricos)</option>
+                    <option value="cuidados_generales">Cuidados generales de enfermería</option>
+                    <option value="cuidados_pediatricos">Cuidados pediátricos</option>
+                    <option value="cuidados_rehabilitacion">Rehabilitación y terapia física</option>
+                    <option value="psicologia">Psicología</option>
+                </select>
+            </div>
 
-                <!-- Datos Personales -->
-                <h4 class="mb-3">Datos Personales</h4>
-                <div class="mb-3">
-                    <label for="nombreCompleto" class="form-label">Nombre Completo</label>
-                    <input type="text" class="form-control" id="nombreCompleto" required>
-                </div>
-                <div class="mb-3">
-                    <label for="correoElectronico" class="form-label">Correo Electrónico</label>
-                    <input type="email" class="form-control" id="correoElectronico" required>
-                </div>
-                <div class="mb-3">
-                    <label for="telefonoContacto" class="form-label">Teléfono de Contacto</label>
-                    <input type="tel" class="form-control" id="telefonoContacto" required>
-                </div>
-                <div class="mb-3">
-                    <label for="direccion" class="form-label">Dirección</label>
-                    <input type="text" class="form-control" id="direccion">
-                </div>
+            <!-- Documentos Adjuntos -->
+            <h4 class="mb-3">Documentos adjuntos</h4>
+            <div class="mb-3">
+                <label for="cv" class="form-label">Currículum vitae (CV)</label>
+                <input type="file" class="form-control" id="cv" required>
+            </div>
+            <div class="mb-3">
+                <label for="cedulaProfesional" class="form-label">Cédula profesional o Certificaciones</label>
+                <input type="file" class="form-control" id="cedulaProfesional" required>
+            </div>
+            <div class="mb-3">
+                <label for="referencias" class="form-label">Referencias laborales o Cartas de recomendación</label>
+                <input type="file" class="form-control" id="referencias">
+            </div>
 
-                <!-- Información Profesional -->
-                <h4 class="mb-3">Información Profesional</h4>
-                <div class="mb-3">
-                    <label for="especialidad" class="form-label">Especialidad</label>
-                    <select class="form-select" id="especialidad" required>
-        <option value="">Seleccione una especialidad</option>
-        <option value="cuidados_postoperatorios">Cuidados postoperatorios y paliativos</option>
-        <option value="cuidados_geriatrico">Cuidados para adultos mayores (geriátricos)</option>
-        <option value="cuidados_generales">Cuidados generales de enfermería</option>
-        <option value="cuidados_pediatricos">Cuidados pediátricos</option>
-        <option value="cuidados_rehabilitacion">Rehabilitación y terapia física</option>
-        <option value="psicologia">Psicología</option>
-      </select>
-                </div>
+            <!-- Disponibilidad -->
+            <h4 class="mb-3">Disponibilidad</h4>
+            <div class="mb-3">
+                <label for="horariosDisponibles" class="form-label">Horarios disponibles</label>
+                <select multiple class="form-select" id="horariosDisponibles" required>
+                    <option value="mañana">Mañana</option>
+                    <option value="tarde">Tarde</option>
+                    <option value="noche">Noche</option>
+                </select>
+                <small class="text-muted">Mantenga presionada la tecla Ctrl (Windows) o Command (Mac) para seleccionar múltiples opciones.</small>
+            </div>
 
-                <!-- Documentos Adjuntos -->
-                <h4 class="mb-3">Documentos Adjuntos</h4>
-                <div class="mb-3">
-                    <label for="cv" class="form-label">Currículum Vitae (CV)</label>
-                    <input type="file" class="form-control" id="cv" required>
-                </div>
-                <div class="mb-3">
-                    <label for="cedulaProfesional" class="form-label">Cédula Profesional o Certificaciones</label>
-                    <input type="file" class="form-control" id="cedulaProfesional" required>
-                </div>
-                <div class="mb-3">
-                    <label for="referencias" class="form-label">Referencias Laborales o Cartas de Recomendación</label>
-                    <input type="file" class="form-control" id="referencias">
-                </div>
-
-                <!-- Disponibilidad -->
-                <h4 class="mb-3">Disponibilidad</h4>
-                <div class="mb-3">
-                    <label for="horariosDisponibles" class="form-label">Horarios Disponibles</label>
-                    <select multiple class="form-select" id="horariosDisponibles" required>
-        <option value="mañana">Mañana</option>
-        <option value="tarde">Tarde</option>
-        <option value="noche">Noche</option>
-      </select>
-                    <small class="text-muted">Mantenga presionada la tecla Ctrl (Windows) o Command (Mac) para seleccionar múltiples opciones.</small>
-                </div>
-
-                <!-- Botón de Enviar -->
-                <div class="d-grid gap-2">
-                    <button type="submit" class="btn btn-primary" style="background-color: #2964a7; border-color: #2964a7;" onmouseover="this.style.backgroundColor='rgba(26, 135, 98, 0.9)'; this.style.borderColor='rgba(26, 135, 98, 0.9)'" onmouseout="this.style.backgroundColor='#2964a7'; this.style.borderColor='#2964a7'">
-        Enviar postulación
-    </button>
-                </div>
-
-            </form>
-
-        </div>
-
-
+            <!-- Botón de Enviar -->
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-primary" style="background-color: #2964a7; border-color: #2964a7;" onmouseover="this.style.backgroundColor='rgba(26, 135, 98, 0.9)'; this.style.borderColor='rgba(26, 135, 98, 0.9)'" onmouseout="this.style.backgroundColor='#2964a7'; this.style.borderColor='#2964a7'">
+                    Enviar postulación
+                </button>
+            </div>
+        </form>
     </div>
 
     <section>
@@ -170,13 +146,7 @@
                 <p>&copy; 2024 CAPSA. Todos los derechos reservados.</p>
             </footer>
         </div>
-
     </section>
-
-
-
-    <!-- Bootstrap JS (opcional, para funcionalidades adicionales de Bootstrap) -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

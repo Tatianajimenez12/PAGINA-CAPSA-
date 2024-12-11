@@ -1,59 +1,198 @@
+/* Estilo del fondo */
+
+.background {
+    background-color: #E1E1E1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+
+/* Estilo general del cuerpo */
+
 body {
-    background-color: #E1E1E1 !important;
-    /* Asegura que este color se aplique */
-}
-
-.d-grid {
-    margin-bottom: 30px;
-    /* Ajusta el valor para más o menos espacio */
-}
-
-.formulario-panel {
-    background-color: #bccbdc;
-    /* Cambié el fondo blanco a un gris suave */
-    padding: 20px;
-    border-radius: 10px;
-    /* Bordes redondeados para darle un mejor aspecto */
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    /* Sombra para que destaque */
+    font-family: Arial, sans-serif;
+    color: #4A90E2;
+    margin: 0;
+    padding: 0;
 }
 
 
-/* Espaciado adicional en el contenedor */
+/* Encabezado */
 
-.container {
-    margin-top: 80px;
-    /* Para dar un margen superior al formulario */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #dfe4eb;
+    padding: 10px 20px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 
-/* Fondo con opacidad */
+/* Logo */
 
-.form-container {
-    background-color: rgb(27, 25, 25);
-    /* Fondo blanco semi-transparente */
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(51, 50, 50, 0.1);
+.logo img {
+    width: 150px;
+    height: auto;
+    max-height: none;
+}
+
+.navbar-logo img {
+    height: 80px;
+    width: auto;
 }
 
 
-/* Asegura que el contenido del formulario sea legible */
+/* Menú de navegación */
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    position: relative;
+    margin-right: 65px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    padding: 12px 20px;
+    display: block;
+}
+
+nav ul li:hover .submenu {
+    display: block;
+}
+
+.navbar-nav .nav-link {
+    color: white;
+    /* Color por defecto */
+    transition: color 0.3s ease;
+    /* Suaviza la transición */
+}
+
+.navbar-nav .nav-link:hover {
+    color: #070345;
+    /* Color azul al pasar el cursor */
+}
+
+
+/* Submenú */
+
+.submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #4A90E2;
+}
+
+.submenu li a {
+    padding: 10px;
+    color: white;
+}
+
+
+/* Footer */
+
+footer {
+    background-color: #4a91e2;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    position: relative;
+    width: 100%;
+}
+
+
+/* Estilo del formulario */
 
 form {
-    z-index: 1;
+    background: linear-gradient(to right, #A8D5BA, #8EC6C5);
+    /* Degradado rosa a azul */
+    padding: 30px;
+    /* Aumento aún más el espacio interno */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    /* Aseguramos que ocupe todo el ancho disponible */
+    max-width: 1400px;
+    /* Aumento el ancho máximo del formulario */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    margin-bottom: 50px;
+    /* Más espacio en la parte inferior */
+    position: relative;
+    /* Necesario para posicionar las imágenes encima */
 }
 
-.btn-primary {
-    background-color: #2964a7;
-    /* Color de fondo original */
-    border-color: #2964a7;
-    /* Asegura que el borde coincida con el fondo */
+form::before,
+form::after {
+    content: '';
+    position: absolute;
+    top: 10%;
+    /* Subimos las imágenes más arriba */
+    transform: translateY(0);
+    /* Asegura que las imágenes queden alineadas arriba */
+    bottom: 0;
+    width: 20%;
+    height: 60%;
+    /* Ajusta la altura de las imágenes (más pequeñas) */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
-.btn-primary:hover {
-    background-color: rgba(26, 135, 98, 0.9);
-    /* Nuevo color al pasar el cursor */
-    border-color: rgba(26, 135, 98, 0.9);
-    /* Asegura que el borde cambie al mismo color */
+form::before {
+    left: 10%;
+    /* Espacio a la izquierda */
+    background-image: url('enfermera.png');
+    /* Ruta de la imagen de la izquierda */
+}
+
+form::after {
+    right: 10%;
+    /* Espacio a la derecha */
+    background-image: url('enfermero.png');
+    /* Ruta de la imagen de la derecha */
+}
+
+form input,
+form button {
+    width: 90%;
+    /* Ajustamos el ancho a un 90% para dar espacio a las imágenes */
+    padding: 15px;
+    /* Reducimos el padding para que los campos sean más compactos */
+    margin: 10px 0;
+    /* Reducimos el margen entre los campos */
+    border-radius: 12px;
+    /* Bordes más redondeados */
+    border: 1px solid #ccc;
+    font-size: 20px;
+    /* Tamaño del texto ajustado */
+}
+
+form button {
+    background-color: #4A90E2;
+    color: white;
+    cursor: pointer;
+    font-size: 24px;
+    /* Botón con texto más grande */
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #357ABD;
 }
