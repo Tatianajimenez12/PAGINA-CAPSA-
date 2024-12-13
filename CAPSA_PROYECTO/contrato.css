@@ -10,6 +10,20 @@
     z-index: -1;
 }
 
+.formulario-panel {
+    margin: 5px auto;
+    /* Ajustado para bajar el formulario */
+    margin-left: 0;
+    /* Mueve el formulario hacia la izquierda */
+    margin-bottom: 20px;
+    /* Agrega espacio en la parte inferior */
+    padding: 30px;
+    max-width: 1137px;
+    background: linear-gradient(to right, #00D1B2, #4f94e3);
+    border-radius: 15px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+}
+
 
 /* Estilo general del cuerpo */
 
@@ -28,7 +42,7 @@ header {
     justify-content: space-between;
     align-items: center;
     background-color: #dfe4eb;
-    padding: 10px 20px;
+    padding: 5px 20px;
     width: 100%;
     box-sizing: border-box;
 }
@@ -75,14 +89,11 @@ nav ul li:hover .submenu {
 
 .navbar-nav .nav-link {
     color: white;
-    /* Color por defecto */
     transition: color 0.3s ease;
-    /* Suaviza la transición */
 }
 
 .navbar-nav .nav-link:hover {
     color: #070345;
-    /* Color azul al pasar el cursor */
 }
 
 
@@ -114,85 +125,69 @@ footer {
 }
 
 
-/* Estilo del formulario */
+/* Formulario */
 
 form {
-    background: linear-gradient(to right, #A8D5BA, #8EC6C5);
-    /* Degradado rosa a azul */
-    padding: 30px;
-    /* Aumento aún más el espacio interno */
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    /* Aseguramos que ocupe todo el ancho disponible */
-    max-width: 1400px;
-    /* Aumento el ancho máximo del formulario */
+    margin-top: 20px;
+}
+
+form .form-label {
+    font-size: 1rem;
+    color: #444;
+}
+
+form .form-control {
+    font-size: 0.9rem;
+    padding: 10px;
+    transition: transform 0.3s ease;
+    /* Transición para el levantado */
+}
+
+form .form-control:focus,
+form .form-control:hover {
+    transform: translateY(-10px);
+    /* Levanta el campo al enfocar o al pasar el cursor */
+}
+
+
+/* Botón de envío */
+
+.btn-primary {
+    background-color: #a76a29;
+    border-color: #a7a129;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 10px 20px;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+
+/* Imágenes en el formulario */
+
+.formulario-image {
+    flex: 0 0 350px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
-    margin-bottom: 50px;
-    /* Más espacio en la parte inferior */
-    position: relative;
-    /* Necesario para posicionar las imágenes encima */
+    justify-content: space-between;
+    margin-left: -80px;
+    /* Para mover las imágenes a la izquierda */
+    margin-top: 2px;
+    /* Para subir las imágenes */
 }
 
-form::before,
-form::after {
-    content: '';
-    position: absolute;
-    top: 10%;
-    /* Subimos las imágenes más arriba */
-    transform: translateY(0);
-    /* Asegura que las imágenes queden alineadas arriba */
-    bottom: 0;
-    width: 20%;
-    height: 60%;
-    /* Ajusta la altura de las imágenes (más pequeñas) */
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+.formulario-image img {
+    border: 3px solid #4a91e2;
+    /* Bordes grises claros */
+    border-radius: 19px;
+    /* Bordes redondeados */
+    padding: 5px;
+    /* Espaciado interno alrededor de la imagen */
+    margin-bottom: 10px;
+    transition: transform 0.3s ease;
+    /* Transición para el efecto de levantado */
 }
 
-form::before {
-    left: 10%;
-    /* Espacio a la izquierda */
-    background-image: url('enfermera.png');
-    /* Ruta de la imagen de la izquierda1 */
-}
-
-form::after {
-    right: 10%;
-    /* Espacio a la derecha */
-    background-image: url('enfermero.png');
-    /* Ruta de la imagen de la derecha */
-}
-
-form input,
-form button {
-    width: 90%;
-    /* Ajustamos el ancho a un 90% para dar espacio a las imágenes */
-    padding: 15px;
-    /* Reducimos el padding para que los campos sean más compactos */
-    margin: 10px 0;
-    /* Reducimos el margen entre los campos */
-    border-radius: 12px;
-    /* Bordes más redondeados */
-    border: 1px solid #ccc;
-    font-size: 20px;
-    /* Tamaño del texto ajustado */
-}
-
-form button {
-    background-color: #4A90E2;
-    color: white;
-    cursor: pointer;
-    font-size: 24px;
-    /* Botón con texto más grande */
-    transition: background-color 0.3s ease;
-}
-
-form button:hover {
-    background-color: #357ABD;
+.formulario-image img:hover {
+    transform: translateY(-10px);
+    /* Levantar la imagen hacia arriba */
 }

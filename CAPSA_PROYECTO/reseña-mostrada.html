@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reseñas Enviadas</title>
+    <link rel="stylesheet" href="reseñas_guardadas.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="titulo">Reseñas Enviadas</h1>
+
+        <div id="mostrarReseñas">
+            <!-- Aquí se mostrarán todas las reseñas -->
+        </div>
+
+        <!-- Botón para regresar -->
+        <button id="regresarButton" onclick="window.history.back()">Regresar</button>
+    </div>
+
+    <script>
+        // Obtener todas las reseñas guardadas desde localStorage
+        const reseñas = JSON.parse(localStorage.getItem('reseñas')) || [];
+        const mostrarReseñas = document.getElementById('mostrarReseñas');
+
+        // Colores para las estrellas según la calificación
+        const coloresEstrellas = ['#ff0000', '#ffa500', '#ffff00', '#008000', '#0000ff'];
+
+        // Función para mostrar las reseñas
+        function mostrar() {
+            mostrarReseñas.innerHTML = ''; // Limpiar contenido actual
+
+            if (reseñas.length > 0) {
+                reseñas.forEach((reseña, index) => {
+                    // Crear las estrellas con los colores correspondientes
+                    const estrellasHTML = Array(5).fill('<span class="estrella">★</span>').map((estrella, index) => {
+                        return index < reseña.calificacion ?
+                            `<span class="estrella" style="color: ${coloresEstrellas[index]}">★</span>` : estrella;
+                    }).join('');
+
+                    const reseñaHTML = `
+                        <div class="reseña" id="reseña-${index}">
+                            <strong>Servicio:</strong> ${reseña.servicio} <br>
+                            <strong>Calificación:</strong> ${estrellasHTML} <br>
+                            <strong>Comentario:</strong> ${reseña.comentario} <br>
+                            <button onclick="editarReseña(${index})">🖉 Editar</button>
+                            <button onclick="borrarReseña(${index})">🗑 Borrar</button>
+                        </div>
+                    `;
+                    mostrarReseñas.innerHTML += reseñaHTML;
+                });
+            } else {
+                mostrarReseñas.innerHTML = '<p>No hay reseñas para mostrar.</p>';
+            }
+        }
+
+        // Llamar a la función para mostrar las reseñas al cargar la página
+        mostrar();
+
+        // Función para editar una reseña
+        function editarReseña(index) {
+            const reseña = reseñas[index];
+            // Crear un formulario con todos los campos de la reseña
+            const servicio = prompt('Editar servicio:', reseña.servicio);
+            const calificacion = prompt('Editar calificación (1-5):', reseña.calificacion);
+            const comentario = prompt('Editar comentario:', reseña.comentario);
+
+            if (servicio !== null && calificacion !== null && comentario !== null) {
+                // Validar la calificación
+                if (calificacion >= 1 && calificacion <= 5) {
+                    reseñas[index] = {...reseña,
+                        servicio,
+                        calificacion: parseInt(calificacion),
+                        comentario
+                    };
+                    localStorage.setItem('reseñas', JSON.stringify(reseñas));
+                    mostrar(); // Actualizar la vista
+                } else {
+                    alert('Por favor ingresa una calificación válida (entre 1 y 5).');
+                }
+            }
+        }
+
+        // Función para borrar una reseña
+        function borrarReseña(index) {
+            if (confirm('¿Estás seguro de que deseas borrar esta reseña?')) {
+                reseñas.splice(index, 1); // Eliminar la reseña del array
+                localStorage.setItem('reseñas', JSON.stringify(reseñas)); // Actualizar en localStorage
+                mostrar(); // Actualizar la vista
+            }
+        }
+    </script>
+</body>
+
+</html>
