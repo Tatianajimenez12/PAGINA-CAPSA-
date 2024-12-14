@@ -4,13 +4,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reseñas Enviadas</title>
+    <title>Reseñas de Servicio</title>
     <link rel="stylesheet" href="reseñas_guardadas.css">
 </head>
 
 <body>
+    <!-- Encabezado con menú -->
+    <header>
+        <img src="logocapsa.png" alt="Logo" class="logo">
+        <nav class="menu">
+            <ul>
+                <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+                <li class="nav-item"><a class="nav-link" href="Quienes somos.html">¿Quiénes somos?</a></li>
+                <li class="nav-item"><a class="nav-link" href="#sec-9758">Servicios</a></li>
+                <li class="nav-item"><a class="nav-link" href="nuestro-personal.html">Nuestro personal</a></li>
+                <li class="nav-item"><a class="nav-link" href="convenios.html">Convenios</a></li>
+                <li class="nav-item"><a class="nav-link" href="contrato.html">Únete con nosotros</a></li>
+                <li class="nav-item"><a class="nav-link" href="reseñas.html">Reseñas</a></li>
+            </ul>
+        </nav>
+    </header>
     <div class="container">
-        <h1 class="titulo">Reseñas Enviadas</h1>
+        <h1 class="titulo">Reseñas enviadas</h1>
 
         <div id="mostrarReseñas">
             <!-- Aquí se mostrarán todas las reseñas -->
@@ -21,32 +36,32 @@
     </div>
 
     <script>
-        // Obtener todas las reseñas guardadas desde localStorage
         const reseñas = JSON.parse(localStorage.getItem('reseñas')) || [];
         const mostrarReseñas = document.getElementById('mostrarReseñas');
 
-        // Colores para las estrellas según la calificación
-        const coloresEstrellas = ['#ff0000', '#ffa500', '#ffff00', '#008000', '#0000ff'];
+        const coloresEstrellas = ['#ff4e50', '#ffa726', '#ffd700', '#8bc34a', '#42a5f5'];
 
-        // Función para mostrar las reseñas
         function mostrar() {
-            mostrarReseñas.innerHTML = ''; // Limpiar contenido actual
+            mostrarReseñas.innerHTML = '';
 
             if (reseñas.length > 0) {
                 reseñas.forEach((reseña, index) => {
-                    // Crear las estrellas con los colores correspondientes
-                    const estrellasHTML = Array(5).fill('<span class="estrella">★</span>').map((estrella, index) => {
-                        return index < reseña.calificacion ?
-                            `<span class="estrella" style="color: ${coloresEstrellas[index]}">★</span>` : estrella;
+                    const estrellasHTML = Array(5).fill('<span class="estrella">★</span>').map((estrella, i) => {
+                        return i < reseña.calificacion ?
+                            `<span class="estrella" style="color: ${coloresEstrellas[i]}">★</span>` : estrella;
                     }).join('');
 
                     const reseñaHTML = `
                         <div class="reseña" id="reseña-${index}">
-                            <strong>Servicio:</strong> ${reseña.servicio} <br>
-                            <strong>Calificación:</strong> ${estrellasHTML} <br>
-                            <strong>Comentario:</strong> ${reseña.comentario} <br>
-                            <button onclick="editarReseña(${index})">🖉 Editar</button>
-                            <button onclick="borrarReseña(${index})">🗑 Borrar</button>
+                            <div class="texto-reseña">
+                                <p><strong>Servicio:</strong> ${reseña.servicio}</p>
+                                <p><strong>Calificación:</strong> ${estrellasHTML}</p>
+                                <p><strong>Comentario:</strong> ${reseña.comentario}</p>
+                            </div>
+                            <div class="botones-reseña">
+                                <button class="editar" onclick="editarReseña(${index})">🖉</button>
+                                <button class="borrar" onclick="borrarReseña(${index})">🗑</button>
+                            </div>
                         </div>
                     `;
                     mostrarReseñas.innerHTML += reseñaHTML;
@@ -56,42 +71,42 @@
             }
         }
 
-        // Llamar a la función para mostrar las reseñas al cargar la página
-        mostrar();
-
-        // Función para editar una reseña
         function editarReseña(index) {
             const reseña = reseñas[index];
-            // Crear un formulario con todos los campos de la reseña
             const servicio = prompt('Editar servicio:', reseña.servicio);
             const calificacion = prompt('Editar calificación (1-5):', reseña.calificacion);
             const comentario = prompt('Editar comentario:', reseña.comentario);
 
             if (servicio !== null && calificacion !== null && comentario !== null) {
-                // Validar la calificación
                 if (calificacion >= 1 && calificacion <= 5) {
-                    reseñas[index] = {...reseña,
+                    reseñas[index] = {
+                        ...reseña,
                         servicio,
                         calificacion: parseInt(calificacion),
                         comentario
                     };
                     localStorage.setItem('reseñas', JSON.stringify(reseñas));
-                    mostrar(); // Actualizar la vista
+                    mostrar();
                 } else {
                     alert('Por favor ingresa una calificación válida (entre 1 y 5).');
                 }
             }
         }
 
-        // Función para borrar una reseña
         function borrarReseña(index) {
             if (confirm('¿Estás seguro de que deseas borrar esta reseña?')) {
-                reseñas.splice(index, 1); // Eliminar la reseña del array
-                localStorage.setItem('reseñas', JSON.stringify(reseñas)); // Actualizar en localStorage
-                mostrar(); // Actualizar la vista
+                reseñas.splice(index, 1);
+                localStorage.setItem('reseñas', JSON.stringify(reseñas));
+                mostrar();
             }
         }
+
+        mostrar();
     </script>
+    <!-- Footer constante -->
+    <footer>
+        <p>&copy; 2024 CAPSA. Todos los derechos reservados.</p>
+    </footer>
 </body>
 
 </html>

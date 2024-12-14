@@ -1,29 +1,57 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f7f7f7;
+    background: #E1E1E1;
+    /* Fondo estático para el body */
     margin: 0;
     padding: 0;
+    color: #333;
 }
 
+
+/* Fondo animado solo para el contenedor del formulario */
+
 .container {
-    max-width: 800px;
-    margin: 50px auto;
+    max-width: 1000px;
+    margin: 30px auto;
     padding: 20px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, #6dd5fa, #ffffff);
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    color: #333;
+    animation: backgroundAnimation 15s infinite;
+}
+
+@keyframes backgroundAnimation {
+    0% {
+        background: linear-gradient(135deg, #a9d4e3, #ffffff);
+    }
+    25% {
+        background: linear-gradient(135deg, #f1e8e9, #f0e3df);
+    }
+    50% {
+        background: linear-gradient(135deg, #d6d4db, #f2e7ee);
+    }
+    75% {
+        background: linear-gradient(135deg, #d6eadd, #dce9ef);
+    }
+    100% {
+        background: linear-gradient(135deg, #acdbec, #e9dcdc);
+    }
 }
 
 h1.titulo {
     text-align: center;
     color: #333;
+    font-size: 2.2em;
     margin-bottom: 20px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 h3 {
     text-align: center;
     color: #555;
     margin-bottom: 15px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 form {
@@ -34,7 +62,7 @@ form {
 
 label {
     font-weight: bold;
-    color: #333;
+    color: #444;
 }
 
 input,
@@ -42,52 +70,85 @@ select,
 textarea,
 button {
     width: 100%;
+    width: calc(100% - 20px);
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 5px;
+    background: rgba(255, 255, 255, 0.8);
+    color: #333;
+    font-size: 1em;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: rgba(0, 0, 0, 0.5);
 }
 
 button {
-    background-color: #28a745;
+    background-color: #28d6d9;
     color: white;
     font-weight: bold;
     border: none;
     cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 button:hover {
-    background-color: #218838;
+    background-color: #2c9a9a;
+    transform: translateY(-2px);
 }
 
 #estrellas {
     display: flex;
     justify-content: space-around;
-    margin: 10px 0;
+    margin: 30px 0;
 }
 
 .estrella {
-    font-size: 30px;
+    font-size: 50px;
     cursor: pointer;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.estrella:hover {
+    transform: scale(1.5);
+}
+
+.estrella:active {
+    animation: bounce 0.3s ease forwards;
+}
+
+@keyframes bounce {
+    0% {
+        transform: scale(1.3);
+    }
+    50% {
+        transform: scale(1.8);
+    }
+    100% {
+        transform: scale(1.3);
+    }
 }
 
 .estrella:nth-child(1) {
-    color: #ff0000;
+    color: #ff4e50;
 }
 
 .estrella:nth-child(2) {
-    color: #ffa500;
+    color: #ffa726;
 }
 
 .estrella:nth-child(3) {
-    color: #ffff00;
+    color: #ffd700;
 }
 
 .estrella:nth-child(4) {
-    color: #008000;
+    color: #8bc34a;
 }
 
 .estrella:nth-child(5) {
-    color: #0000ff;
+    color: #42a5f5;
 }
 
 .hidden {
@@ -95,7 +156,70 @@ button:hover {
 }
 
 .reseña {
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
     padding: 10px 0;
     margin: 10px 0;
+    color: #333;
+}
+
+
+/* Estilo general del encabezado */
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #4A90E2;
+    /* Color azul del menú */
+    padding: 30px 130px;
+    color: white;
+    width: 70%;
+    margin-left: auto;
+    /* Mueve el encabezado hacia el lado derecho */
+}
+
+header .logo img {
+    height: 100px;
+}
+
+header .menu ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+header .menu ul li {
+    margin: 0 35px;
+}
+
+header .menu ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+header .menu ul li a:hover {
+    color: black;
+    text-decoration: none;
+}
+
+footer {
+    background-color: #4a91e2;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    position: relative;
+    width: 100%;
+    margin-top: 60px;
+}
+
+header .logo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 110px;
+    object-fit: contain;
 }
