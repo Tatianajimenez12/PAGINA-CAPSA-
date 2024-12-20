@@ -11,8 +11,8 @@
     border-radius: 10px;
     overflow: hidden;
     text-align: center;
-    background-color: #fff;
-    /* Fondo blanco para contrastes */
+    background-color: #d3e8f4 !important;
+    /* Fondo azul pastel */
 }
 
 .convenio-card img {
@@ -23,6 +23,15 @@
     object-fit: cover;
     /* Ajusta la imagen sin deformarla */
     border-bottom: 2px solid #4A91E2;
+}
+
+
+/* Convenios */
+
+h1.text-center {
+    color: #4A91E2;
+    font-size: 50px;
+    /* Ajusta el tamaño de la fuente */
 }
 
 
@@ -208,4 +217,14 @@ nav ul li a {
 .submenu li a {
     padding: 10px;
     color: white;
+}
+
+
+/* Párrafo con texto en negritas y más grande */
+
+p.text-center {
+    font-weight: bold;
+    /* Poner el texto en negrita */
+    font-size: 22px;
+    /* Ajusta el tamaño de la fuente */
 }
