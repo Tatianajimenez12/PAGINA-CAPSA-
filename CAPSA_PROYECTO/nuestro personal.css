@@ -28,16 +28,17 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 10px 30px;
-    /* Reducimos el padding para extender el área */
-    width: 100%;
+    width: 90%;
+    margin-left: 10%;
+    /* Ajustamos el margen del lado izquierdo */
     box-sizing: border-box;
     background-color: #4A90E2;
     color: white;
     position: fixed;
-    top: 0;
+    top: 20px;
+    /* Baja el encabezado */
     z-index: 10;
     height: 80px;
-    /* Extensión ajustada del encabezado */
 }
 
 
@@ -47,6 +48,8 @@ header {
     width: 150px;
     height: auto;
     max-height: none;
+    margin-left: -20px;
+    /* Mueve el logo más hacia la izquierda */
 }
 
 
@@ -85,28 +88,22 @@ nav ul li:hover .submenu {
     top: 100%;
     left: 0;
     background-color: #2964a7;
-    /* Cambiamos el fondo para mayor contraste */
     border-radius: 5px;
-    /* Bordes redondeados para mejor apariencia */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    /* Añadimos sombra */
 }
 
 .submenu li a {
     padding: 10px;
     color: white;
     white-space: nowrap;
-    /* Asegura que el texto no se corte */
     font-size: 16px;
-    /* Tamaño consistente */
 }
 
 
 /* Espaciado debajo del encabezado para el contenido principal */
 
 body {
-    padding-top: 100px;
-    /* Ajustamos para el encabezado fijo */
+    padding-top: 150px;
 }
 
 
@@ -206,7 +203,7 @@ footer {
 }
 
 
-/*menu */
+/* Menu */
 
 nav ul li {
     position: relative;
@@ -222,21 +219,16 @@ nav ul li a {
 
 .navbar-nav .nav-link {
     color: white;
-    /* Color por defecto */
     transition: color 0.3s ease;
-    /* Suaviza la transición */
 }
 
 .navbar-nav .nav-link:hover {
     color: #070345;
-    /* Color azul al pasar el cursor */
 }
 
 .card-img-bottom {
     height: 300px;
-    /* Ajusta la altura para que los GIFs tengan el mismo tamaño */
     object-fit: cover;
-    /* Esto asegurará que el GIF se ajuste correctamente sin distorsionarse */
 }
 
 footer {
@@ -248,7 +240,6 @@ footer {
     bottom: 0;
     width: 100%;
     margin-top: 10px;
-    /* Ajusta el margen para que el pie de página no se superponga */
 }
 
 footer p {
@@ -259,19 +250,9 @@ footer p {
 /* Media Queries para dispositivos móviles */
 
 @media screen and (max-width: 768px) {
-    h1 {
-        font-size: 28px;
-    }
-    h2 {
-        font-size: 24px;
-    }
-    h3 {
-        font-size: 20px;
-    }
-    p,
-    span,
-    li {
-        font-size: 14px;
+    header {
+        width: 100%;
+        margin-left: 0;
     }
     .navbar {
         flex-direction: column;
@@ -283,61 +264,16 @@ footer p {
     .container {
         padding: 15px;
     }
-    /* Centrar títulos */
     h2 {
         text-align: center;
-    }
-    /* Texto blanco para características */
-    .valores-texto {
-        color: white;
     }
     header {
         background-color: #4a91e2 !important;
     }
-    header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background-color: #dfe4eb;
-        padding: 10px 20px;
-        width: 100%;
-        box-sizing: border-box;
-    }
-    nav ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        display: flex;
-    }
     nav ul li {
-        position: relative;
-        margin-right: 65px;
-    }
-    nav ul li a {
-        text-decoration: none;
-        color: rgb(255, 255, 255);
-        padding: 12px 20px;
-        display: block;
-    }
-    .navbar-nav .nav-link {
-        color: white;
-        transition: color 0.3s ease;
-    }
-    .navbar-nav .nav-link:hover {
-        color: #070345;
+        margin-right: 15px;
     }
     .navbar-toggler-icon {
         background-color: #4A90E2;
-    }
-    .submenu {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        background-color: #4A90E2;
-    }
-    .submenu li a {
-        padding: 10px;
-        color: white;
     }
 }
