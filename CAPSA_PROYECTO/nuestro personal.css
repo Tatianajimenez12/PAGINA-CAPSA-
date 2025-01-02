@@ -13,42 +13,6 @@
 
 /* Navbar */
 
-.custom-navbar {
-    background: linear-gradient(90deg, #4A90E2, #007bff);
-    padding: 10px 0;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.navbar-logo img {
-    height: 60px;
-}
-
-.navbar-toggler {
-    border: none;
-    background-color: #4A90E2;
-}
-
-.navbar-toggler-icon {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='white' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
-}
-
-.navbar-nav .nav-link {
-    color: white;
-    font-size: 16px;
-    padding: 10px 20px;
-    transition: background-color 0.3s ease-in-out;
-}
-
-.navbar-nav .nav-link:hover {
-    background-color: #0056b3;
-    border-radius: 5px;
-}
-
 
 /* Contenido principal */
 

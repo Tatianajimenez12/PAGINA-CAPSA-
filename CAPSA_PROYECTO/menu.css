@@ -1,0 +1,63 @@
+/* Estilos generales del menú */
+
+header {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    background-color: #E1E1E1 !important;
+    padding: 10px 20px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+.custom-navbar {
+    background: linear-gradient(90deg, #4A90E2, #007bff) !important;
+    border-radius: 10px !important;
+    padding: 10px 0 !important;
+}
+
+.navbar-nav .nav-item .nav-link {
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 16px !important;
+    font-weight: 500 !important;
+    color: white !important;
+    padding: 10px 20px !important;
+    transition: all 0.3s ease-in-out !important;
+    text-align: center !important;
+}
+
+.navbar-nav .nav-item .nav-link:hover {
+    background-color: #0056b3 !important;
+    border-radius: 5px !important;
+    color: #4A90E2 !important;
+    transform: scale(1.05) !important;
+    text-decoration: none !important;
+}
+
+.navbar-toggler {
+    border: none !important;
+    outline: none !important;
+}
+
+.navbar-toggler-icon {
+    background-color: #4A90E2 !important;
+}
+
+nav ul {
+    list-style-type: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+}
+
+nav ul li {
+    position: relative !important;
+    margin-right: 65px !important;
+}
+
+nav ul li a {
+    text-decoration: none !important;
+    color: rgb(255, 255, 255) !important;
+    padding: 12px 20px !important;
+    display: block !important;
+}
