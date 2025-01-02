@@ -1,4 +1,4 @@
-/* Fondo de la página */
+/* Fondo general */
 
 .background {
     background-color: #E1E1E1;
@@ -11,269 +11,67 @@
 }
 
 
-/* Estilo general del cuerpo */
+/* Navbar */
 
-body {
-    font-family: Arial, sans-serif;
-    color: #4A90E2;
-    margin: 0;
-    padding: 0;
-}
-
-
-/* Estilo del encabezado */
-
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 30px;
-    width: 90%;
-    margin-left: 10%;
-    /* Ajustamos el margen del lado izquierdo */
-    box-sizing: border-box;
-    background-color: #4A90E2;
-    color: white;
+.custom-navbar {
+    background: linear-gradient(90deg, #4A90E2, #007bff);
+    padding: 10px 0;
     position: fixed;
-    top: 20px;
-    /* Baja el encabezado */
-    z-index: 10;
-    height: 80px;
-}
-
-
-/* Logo dentro del encabezado */
-
-.logo img {
-    width: 150px;
-    height: auto;
-    max-height: none;
-    margin-left: -20px;
-    /* Mueve el logo más hacia la izquierda */
-}
-
-
-/* Menú de navegación */
-
-nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-}
-
-nav ul li {
-    position: relative;
-    margin-left: 20px;
-    /* Espaciado entre elementos del menú */
-}
-
-nav ul li a {
-    text-decoration: none;
-    color: white;
-    padding: 10px 20px;
-    /* Hacemos los enlaces más grandes */
-    display: block;
-    font-size: 18px;
-    /* Aumentamos el tamaño de la fuente */
-}
-
-nav ul li:hover .submenu {
-    display: block;
-}
-
-.submenu {
-    display: none;
-    position: absolute;
-    top: 100%;
+    top: 0;
     left: 0;
-    background-color: #2964a7;
-    border-radius: 5px;
+    width: 100%;
+    z-index: 1000;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.submenu li a {
-    padding: 10px;
+.navbar-logo img {
+    height: 60px;
+}
+
+.navbar-toggler {
+    border: none;
+    background-color: #4A90E2;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='white' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+.navbar-nav .nav-link {
     color: white;
-    white-space: nowrap;
     font-size: 16px;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.navbar-nav .nav-link:hover {
+    background-color: #0056b3;
+    border-radius: 5px;
 }
 
 
-/* Espaciado debajo del encabezado para el contenido principal */
+/* Contenido principal */
 
-body {
-    padding-top: 150px;
+h1 {
+    color: #4A90E2;
 }
-
-
-/* Estilo de las cards */
 
 .card {
-    border: 2px solid #0066CC !important;
-    background-color: #dee9ed !important;
-    max-width: 400px;
-    height: 350px;
-    margin: -10px auto;
-    padding: 20px 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, border-color 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    transition: transform 0.3s ease;
 }
-
-
-/* Efecto hover: sacudida y cambio de color de borde */
 
 .card:hover {
-    transform: rotate(-3deg) translateY(-5px);
-    animation: shake 0.4s ease;
-    border-color: #FF5733;
-}
-
-
-/* Animación de sacudida */
-
-@keyframes shake {
-    0%,
-    100% {
-        transform: rotate(0);
-    }
-    25% {
-        transform: rotate(-3deg);
-    }
-    50% {
-        transform: rotate(3deg);
-    }
-    75% {
-        transform: rotate(-1deg);
-    }
+    transform: scale(1.05);
 }
 
 
 /* Footer */
 
 footer {
-    background-color: #4a91e2;
+    background-color: #4A90E2;
     color: white;
-    text-align: center;
-    padding: 15px 0;
-    position: relative;
-    width: 100%;
-    margin-top: 20px;
-}
-
-
-/* Estilo del logo dentro del navbar */
-
-.navbar-logo img {
-    height: 80px;
-    width: auto;
-}
-
-
-/* Estilo de los enlaces del navbar */
-
-.nav-link {
-    margin-right: 15px;
-    font-size: 16px;
-    transition: color 0.3s ease-in-out;
-}
-
-.nav-link:hover {
-    color: #FFD700;
-}
-
-
-/* Efecto hover en los botones */
-
-.navbar-buttons button {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 15px;
-}
-
-.navbar-buttons button:hover {
-    background-color: #0056b3;
-}
-
-
-/* Menu */
-
-nav ul li {
-    position: relative;
-    margin-right: 65px;
-}
-
-nav ul li a {
-    text-decoration: none;
-    color: rgb(255, 255, 255);
-    padding: 12px 20px;
-    display: block;
-}
-
-.navbar-nav .nav-link {
-    color: white;
-    transition: color 0.3s ease;
-}
-
-.navbar-nav .nav-link:hover {
-    color: #070345;
-}
-
-.card-img-bottom {
-    height: 300px;
-    object-fit: cover;
-}
-
-footer {
-    background-color: #5B9BD5;
-    color: white;
-    padding: 20px 0;
-    text-align: center;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-    margin-top: 10px;
-}
-
-footer p {
     font-size: 14px;
-}
-
-
-/* Media Queries para dispositivos móviles */
-
-@media screen and (max-width: 768px) {
-    header {
-        width: 100%;
-        margin-left: 0;
-    }
-    .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    .navbar a {
-        margin: 5px 0;
-    }
-    .container {
-        padding: 15px;
-    }
-    h2 {
-        text-align: center;
-    }
-    header {
-        background-color: #4a91e2 !important;
-    }
-    nav ul li {
-        margin-right: 15px;
-    }
-    .navbar-toggler-icon {
-        background-color: #4A90E2;
-    }
 }

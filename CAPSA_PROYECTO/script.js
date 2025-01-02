@@ -10,7 +10,7 @@ document.getElementById('verificacionForm').addEventListener('submit', function(
         document.getElementById('verificacionSection').classList.add('hidden');
         document.getElementById('reseñaSection').classList.remove('hidden');
     } else {
-        alert('Por favor, completa todos los campos correctamente.');
+        alert('Por favor, completa todos los campos correctamentes.');
     }
 });
 

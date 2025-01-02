@@ -5,12 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacto - CAPSA</title>
+    <link rel="shortcut icon" href="logocapsapestaña.png">
     <link rel="stylesheet" href="contacto.css">
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 
     <!-- Bootstrap JavaScript y Popper.js -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
@@ -22,61 +23,32 @@
 
 <body class="p-3 m-0 border-0 bd-example m-0 border-0">
     <header>
-        <div class="logo">
-            <img src="logocapsa.jpeg" alt="Logo de CAPSA">
+        <div class="navbar-container">
+            <a href="index.html">
+                <div class="navbar-logo">
+                    <img src="logocapsa.png" alt="Logo CAPSA" style="height: 80px; width: auto;">
+                </div>
+            </a>
         </div>
-        <nav class="navbar bg-body-tertiary fixed-top" style="background-color: #4a91e200 !important;">
-            <div class="container-fluid justify-content-end">
-                <!-- Marca / Logo -->
-                <!-- Botón de hamburguesa para el menú offcanvas -->
-                <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation" style="background-color: #4a91e200; border: none; padding: 0; box-shadow: none; margin: 10px 10px;">
-                    <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+        <nav class="navbar navbar-expand-lg custom-navbar">
+            <div class="container">
+                <button class="navbar-toggler text-black" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
                 </button>
-
-                <!-- Menú Offcanvas -->
-                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-                    <div class="offcanvas-header">
-                        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menú</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                    </div>
-
-                    <div class="offcanvas-body">
-                        <!-- Lista de navegación -->
-                        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-
-                            <!-- Inicio con dropdown -->
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle active" aria-current="page" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: rgb(0, 0, 0);">
-                        Inicio
-                      </a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Atención a quejas</a></li>
-                                    <li><a class="dropdown-item" href="#">Paquetes de salud</a></li>
-                                </ul>
-                            </li>
-
-                            <!-- Trabaja con nosotros -->
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" style="color: rgb(0, 0, 0);">Trabaja con nosotros</a>
-                            </li>
-
-                            <!-- Servicios -->
-                            <li class="nav-item">
-                                <a class="nav-link" href="#sec-9758" style="color: rgb(0, 0, 0);">Servicios</a>
-                            </li>
-
-                            <!-- Información para el paciente -->
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" style="color: rgb(0, 0, 0);">Información para el paciente</a>
-                            </li>
-                        </ul>
-                    </div>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="Quienes somos.html">¿Quiénes somos?</a></li>
+                        <li class="nav-item"><a class="nav-link" href="nuestro-personal.html">Nuestro personal</a></li>
+                        <li class="nav-item"><a class="nav-link" href="convenios.html">Convenios</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contrato.html">Únete con nosotros</a></li>
+                        <li class="nav-item"><a class="nav-link" href="reseñas.html">Comparte tu opinión</a></li>
+                    </ul>
                 </div>
             </div>
         </nav>
-
-
     </header>
+
 
     <main>
         <div class="contact-container">

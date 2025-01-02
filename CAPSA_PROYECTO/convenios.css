@@ -67,7 +67,7 @@ header {
     padding: 10px 20px;
     width: 100%;
     box-sizing: border-box;
-    background-color: #4A91E2;
+    background-color: #E1E1E1;
     color: white;
 }
 
@@ -130,48 +130,21 @@ footer {
     margin-top: 20px;
 }
 
+.custom-navbar {
+    background: linear-gradient(90deg, #4A90E2, #007bff);
+    border-radius: 10px;
+    padding: 10px 0;
+}
 
-/* Estilo del logo dentro del navbar */
+.logo img {
+    width: 150px;
+    height: auto;
+    max-height: none;
+}
 
 .navbar-logo img {
     height: 80px;
     width: auto;
-}
-
-
-/* Estilo de los enlaces del navbar */
-
-.nav-link {
-    margin-right: 15px;
-    font-size: 16px;
-    transition: color 0.3s ease-in-out;
-}
-
-
-/* Efecto hover en los botones */
-
-.navbar-buttons button {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 15px;
-}
-
-.navbar-buttons button:hover {
-    background-color: #0056b3;
-}
-
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #dfe4eb;
-    padding: 10px 20px;
-    width: 100%;
-    box-sizing: border-box;
 }
 
 nav ul {
@@ -193,17 +166,36 @@ nav ul li a {
     display: block;
 }
 
-.navbar-nav .nav-link {
-    color: white;
-    transition: color 0.3s ease;
+nav ul li:hover .submenu {
+    display: block;
 }
 
-.navbar-nav .nav-link:hover {
-    color: #070345;
+.navbar-nav .nav-item .nav-link {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: white;
+    padding: 10px 20px;
+    transition: all 0.3s ease-in-out;
+    text-align: center;
+}
+
+.navbar-nav .nav-item .nav-link:hover {
+    background-color: #0056b3;
+    border-radius: 5px;
+    color: #4A90E2;
+    transform: scale(1.05);
+    text-decoration: none;
+}
+
+.navbar-toggler {
+    border: none;
+    outline: none;
 }
 
 .navbar-toggler-icon {
     background-color: #4A90E2;
+    /* Cambia el color según tu necesidad */
 }
 
 .submenu {
