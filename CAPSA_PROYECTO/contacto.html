@@ -8,17 +8,10 @@
     <link rel="shortcut icon" href="logocapsapestaña.png">
     <link rel="stylesheet" href="contacto.css">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="whatsapp_button.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-
-    <!-- Bootstrap JavaScript y Popper.js -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="whatsapp_button.css">
-
-
 </head>
 
 <body class="p-3 m-0 border-0 bd-example m-0 border-0">
@@ -49,7 +42,6 @@
         </nav>
     </header>
 
-
     <main>
         <div class="contact-container">
             <h1>Contáctenos</h1>
@@ -73,7 +65,7 @@
                     <option value="enfermeria-general">Cuidados generales de enfermería</option>
                     <option value="pediatria">Cuidados pediátricos</option>
                     <option value="rehabilitacion">Rehabilitación y terapia física</option>
-                    <option value="psicologia">psicologia</option>
+                    <option value="psicologia">Psicología</option>
                 </select>
 
                 <label for="comunicacion-preferida">¿Cómo te gustaría que nos comunicáramos?</label>
@@ -92,17 +84,52 @@
         </div>
     </main>
 
+    <!-- Botón de WhatsApp -->
+    <div class="whatsapp-container">
+        <div class="whatsapp-message">Contáctate con nosotros</div>
+        <a href="javascript:void(0)" class="whatsapp-button" id="whatsappButton">
+            <img src="whatsapp.png" alt="WhatsApp">
+        </a>
+        <div class="whatsapp-qr" id="whatsappQR" style="display: none;">
+            <div class="qr-content">
+                <img src="QR.jpeg" alt="Código QR de WhatsApp">
+                <p>¡Hola! Escríbenos para más información</p>
+                <a href="https://wa.me/525548176178" target="_blank" class="open-chat">Ir al chat</a>
+                <button id="closeQR">Cerrar</button>
+            </div>
+        </div>
+    </div>
 
     <footer>
         <p>&copy; 2024 CAPSA. Todos los derechos reservados.</p>
     </footer>
 
+    <!-- Scripts -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const whatsappButton = document.getElementById("whatsappButton");
+            const whatsappQR = document.getElementById("whatsappQR");
+            const closeQRButton = document.getElementById("closeQR");
+
+            if (whatsappButton && whatsappQR && closeQRButton) {
+                whatsappButton.addEventListener("click", () => {
+                    whatsappQR.style.display = whatsappQR.style.display === "none" ? "block" : "none";
+                });
+
+                closeQRButton.addEventListener("click", () => {
+                    whatsappQR.style.display = "none";
+                });
+            } else {
+                console.error("Elementos del botón de WhatsApp no encontrados en el DOM.");
+            }
+        });
+    </script>
     <script>
         document.getElementById('formulario-clientes').addEventListener('submit', function(event) {
-            console.log("Formulario enviado"); // Para verificar que se dispara el evento
-            event.preventDefault(); // Previene el comportamiento por defecto del formulario
+            console.log("Formulario enviado");
+            event.preventDefault();
 
-            const formData = new FormData(this); // Recoge los datos del formulario
+            const formData = new FormData(this);
 
             fetch('http://localhost:3000/clientes', {
                     method: 'POST',
@@ -120,7 +147,7 @@
                 })
                 .then(response => response.text())
                 .then(result => {
-                    console.log(result); // Muestra la respuesta del servidor
+                    console.log(result);
                     alert('Datos insertados correctamente');
                 })
                 .catch(error => {
