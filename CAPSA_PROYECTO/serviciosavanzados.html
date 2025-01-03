@@ -195,9 +195,42 @@
             </div>
         </div>
     </div>
-
+    <!-- Botón de WhatsApp -->
+    <div class="whatsapp-container">
+        <div class="whatsapp-message">Contáctate con nosotros</div>
+        <a href="javascript:void(0)" class="whatsapp-button" id="whatsappButton">
+            <img src="whatsapp.png" alt="WhatsApp">
+        </a>
+        <div class="whatsapp-qr" id="whatsappQR">
+            <div class="qr-content">
+                <img src="QR.jpeg" alt="Código QR de WhatsApp">
+                <p>¡Hola! Escríbenos para más información</p>
+                <a href="https://wa.me/525548176178" target="_blank" class="open-chat">Ir al chat</a>
+                <button id="closeQR">Cerrar</button>
+            </div>
+        </div>
+    </div>
     <footer>
         <p>&copy; 2024 CAPSA. Todos los derechos reservados.</p>
     </footer>
+    <!-- Scripts -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const whatsappButton = document.getElementById("whatsappButton");
+            const whatsappQR = document.getElementById("whatsappQR");
+            const closeQRButton = document.getElementById("closeQR");
 
+            if (whatsappButton && whatsappQR && closeQRButton) {
+                whatsappButton.addEventListener("click", () => {
+                    whatsappQR.style.display = whatsappQR.style.display === "none" ? "block" : "none";
+                });
+
+                closeQRButton.addEventListener("click", () => {
+                    whatsappQR.style.display = "none";
+                });
+            } else {
+                console.error("Elementos del botón de WhatsApp no encontrados en el DOM.");
+            }
+        });
+    </script>
 </body>
