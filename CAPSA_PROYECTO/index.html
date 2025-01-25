@@ -29,7 +29,7 @@
         <div class="navbar-container">
             <a href="index.html">
                 <div class="navbar-logo">
-                    <img src="logocapsa.png" alt="Logo CAPSA" style="height: 100px; width: auto;">
+                    <img src="logos_capsa.png" alt="Logo CAPSA" style="height: 100px; width: auto;">
                 </div>
             </a>
         </div>
@@ -57,16 +57,15 @@
     <section class="intro-section">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-md-6 col-12 text-section" style="margin-top: -15%;">
-                    <img src="pixelcut-export-removebg.png" alt="CAPSA Logo" class="img-fluid" style="height: 300px; width: auto;">
+                <div class="col-md-6 col-12 text-section" style="margin-top: -25%;">
                     <p>"Te cuidamos con todo nuestro cariño, porque cada momento es valioso. Tu bienestar y sonrisa son nuestra prioridad. Siempre estaremos a tu lado, con amor y dedicación."</p>
-                    <a href="contacto.html" class="btn-contacto"><strong>CONTÁCTENOS</strong></a>
+                    <a href="contacto.html" class="btn-contacto" style="margin-top: -30px;"><strong>CONTÁCTENOS</strong></a>
+
                 </div>
 
 
                 <div class="image-container">
-                    <section class="carrusel" style="width: calc(100% + 150px); margin: 0 -75px -0 -50px;">
-
+                    <section class="carrusel" style="width: calc(150% + 150px); margin: 0 -75px -0 -50px;">
 
 
                         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
@@ -259,30 +258,15 @@
                     <label for="emailInput">Ingresa tu correo electrónico:</label>
                     <input type="email" id="emailInput" placeholder="Correo electrónico" />
                     <button onclick="submitUserInfo()">Enviar</button>
-                    <button class="close-chatbot" onclick="closeChatbot()">Cerrar</button>
+                    <button id="closeFormBtn" class="close-chatbot" onclick="closeChatbot()">Cerrar</button>
                 </div>
-                <div id="chatbotOptions" class="chatbot-options" style="display: none;">
-                    <!-- Opciones dinámicas del chatbot -->
-                    <form id="optionsForm">
-                        <!-- Opciones generadas dinámicamente -->
-                    </form>
-                    <button class="close-chatbot" onclick="closeChatbot()">Cerrar</button>
+                <div id="chatInputSection" class="chatbot-input" style="display: none;">
+                    <input type="text" id="userQuestion" placeholder="Escribe tu pregunta aquí..." />
+                    <button onclick="sendUserQuestion()">Enviar</button>
+                    <button id="closeInputBtn" class="close-chatbot" onclick="closeChatbot()">Cerrar</button>
                 </div>
             </div>
         </div>
-
-        <!-- Ventana emergente -->
-        <div id="popup" class="popup-overlay" style="display: none;">
-            <div class="popup-content">
-                <h3 id="popupTitle">Información</h3>
-                <p id="popupMessage"></p>
-                <button onclick="closePopup()">Cerrar</button>
-            </div>
-        </div>
-
-
-
-
 
 
 
