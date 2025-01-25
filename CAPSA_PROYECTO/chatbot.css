@@ -2,12 +2,10 @@
     position: fixed;
     bottom: 80px;
     left: 10px;
-    width: 110px;
-    height: 110px;
+    width: 100px;
+    height: 100px;
     background-color: #1398b0;
     border-radius: 50%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -16,22 +14,21 @@
 }
 
 .chatbot-header img.chatbot-icon {
-    width: 130px;
-    height: 130px;
+    width: 100px;
+    height: 100px;
 }
 
 .chatbot-body {
     position: fixed;
     bottom: 160px;
     left: 10px;
-    width: 600px;
-    max-height: 700px;
+    width: 350px;
+    max-height: 600px;
     background-color: #f1f1f1;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     display: none;
     flex-direction: column;
-    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .chatbot-messages {
@@ -41,160 +38,190 @@
 }
 
 .chatbot-form,
-.chatbot-options {
+.chatbot-input {
     padding: 20px;
 }
 
 .chatbot-form label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
     font-weight: bold;
+    color: #333;
 }
 
 .chatbot-form input {
     width: 100%;
     margin-bottom: 15px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+.chatbot-form input:focus {
+    border-color: #1398b0;
+    outline: none;
+}
+
+.chatbot-input input {
+    width: 80%;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
-}
-
-.chatbot-form button,
-.chatbot-close {
-    padding: 10px;
-    width: 100%;
-    background-color: #4A90E2;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.chatbot-options label {
-    display: block;
-    margin: 5px 0;
 }
 
 .chatbot-message {
     position: fixed;
     bottom: 100px;
     left: 10px;
-    background-color: #ffffff;
-    color: #063818;
-    font-size: 17px;
-    font-weight: bold;
-    padding: 5px 15px;
-    border-radius: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    animation: slideInOut 2s infinite ease-in-out;
-}
-
-
-/* Popup styling */
-
-.popup-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1001;
-}
-
-.popup-content {
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 400px;
-    text-align: center;
-}
-
-.popup-content h3 {
-    margin-bottom: 15px;
-    font-size: 20px;
-    font-weight: bold;
-}
-
-.popup-content button {
-    margin-top: 15px;
-    padding: 10px 20px;
+    color: white;
     background-color: #4A90E2;
+    padding: 10px;
+    border-radius: 20px;
+    font-size: 14px;
+}
+
+
+/* Contenedor de botones para alineación */
+
+#chatbotForm button {
+    padding: 10px 20px;
+    font-size: 14px;
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 20px;
     cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 }
 
 
-/* Animations */
+/* Botón Enviar */
+
+#chatbotForm button:first-of-type {
+    background-color: #0d6c76;
+    margin-right: 10px;
+}
+
+#chatbotForm button:first-of-type:hover {
+    background-color: #0b5a63;
+}
+
+
+/* Botón Cerrar en el formulario */
+
+#closeFormBtn {
+    background-color: #c0392b;
+}
+
+#closeFormBtn:hover {
+    background-color: #c0392b;
+}
+
+
+/* Botón Cerrar en la sección de input */
+
+#closeInputBtn {
+    background-color: #c0392b;
+}
+
+#closeInputBtn:hover {
+    background-color: #c0392b;
+}
+
+
+/* Distribución de botones */
+
+#chatbotForm button:first-of-type {
+    float: left;
+}
+
+.close-chatbot {
+    float: right;
+}
+
+.chatbot-messages {
+    flex: 1;
+    overflow-y: auto;
+    /* Permite el scroll vertical */
+    padding: 10px;
+    max-height: 400px;
+    /* Ajusta la altura máxima según lo que desees */
+}
+
+
+/* Limpiar flotantes */
+
+#chatbotForm::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+
+/* Estilos para la sección de botones */
+
+#chatInputSection {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+/* Estilos para los botones Enviar y Cerrar */
+
+#chatInputSection button {
+    padding: 8px 15px;
+    font-size: 14px;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    margin: 5px 3px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Botón Enviar alineado a la izquierda */
+
+#chatInputSection button:nth-child(1) {
+    background-color: #0d6c76;
+    order: -1;
+}
+
+#chatInputSection button:nth-child(1):hover {
+    background-color: #0b5a63;
+}
+
+
+/* Botón Cerrar alineado a la derecha */
+
+#chatInputSection button:nth-child(2) {
+    background-color: #0d6c76;
+}
+
+#chatInputSection button:nth-child(2):hover {
+    background-color: #0b5a63;
+}
 
 @keyframes shake {
-    0%,
-    100% {
-        transform: translate(0, 0);
+    0% {
+        transform: rotate(0deg);
     }
     25% {
-        transform: translate(5px, -5px);
+        transform: rotate(3deg);
     }
     50% {
-        transform: translate(-5px, 5px);
+        transform: rotate(0deg);
     }
     75% {
-        transform: translate(5px, 5px);
+        transform: rotate(-3deg);
     }
-}
-
-.chatbot-options .close-chatbot {
-    margin-top: 20px;
-    background-color: #d9534f;
-    color: white;
-    border: none;
-    border-radius: 20px;
-    /* Bordes redondeados */
-    padding: 10px 20px;
-    width: fit-content;
-    /* Ajustar ancho al contenido */
-    display: block;
-    margin-left: auto;
-    /* Centrando horizontalmente */
-    margin-right: auto;
-    /* Centrando horizontalmente */
-    text-align: center;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-.chatbot-options .close-chatbot:hover {
-    background-color: #c9302c;
-    /* Cambiar color al pasar el ratón */
-}
-
-.chatbot-form button {
-    padding: 10px;
-    width: 100%;
-    background-color: #4A90E2;
-    /* Botón Enviar */
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-bottom: 10px;
-    /* Espacio entre botones */
-}
-
-@keyframes slideInOut {
-    0%,
     100% {
-        transform: translateY(0);
-        opacity: 1;
-    }
-    50% {
-        transform: translateY(-10px);
-        opacity: 0.8;
+        transform: rotate(0deg);
     }
 }
