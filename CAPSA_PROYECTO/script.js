@@ -1,53 +1,29 @@
-// Validar datos de verificación
-document.getElementById('verificacionForm').addEventListener('submit', function(event) {
+document.getElementById('verificarForm').addEventListener('submit', function (event) {
     event.preventDefault();
 
-    const nombre = document.getElementById('nombre').value;
-    const correo = document.getElementById('correo').value;
-    const telefono = document.getElementById('telefono').value;
+    const nombre = document.querySelector('input[name="nombre"]').value;
+    const correo = document.querySelector('input[name="correo"]').value;
+    const telefono = document.querySelector('input[name="telefono"]').value;
 
-    if (nombre && correo && telefono) {
-        document.getElementById('verificacionSection').classList.add('hidden');
-        document.getElementById('reseñaSection').classList.remove('hidden');
-    } else {
-        alert('Por favor, completa todos los campos correctamentes.');
-    }
-});
+    const formData = {
+        nombre: nombre,
+        correo: correo,
+        telefono: telefono
+    };
 
-// Seleccionar calificación con estrellas
-let calificacionSeleccionada = 0;
-document.querySelectorAll('.estrella').forEach(estrella => {
-    estrella.addEventListener('click', function() {
-        calificacionSeleccionada = parseInt(this.dataset.calificacion, 10);
-        document.querySelectorAll('.estrella').forEach(e => e.style.opacity = '0.3');
-        for (let i = 0; i < calificacionSeleccionada; i++) {
-            document.querySelectorAll('.estrella')[i].style.opacity = '1';
-        }
+    fetch('http://localhost:3000/verificar', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+    })
+    .then(response => response.text())
+    .then(data => {
+        alert(data);  // Muestra el mensaje de éxito
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+        alert('Hubo un error al enviar los datos.');
     });
-});
-
-// Enviar reseña
-document.getElementById('formularioReseña').addEventListener('submit', function(event) {
-    event.preventDefault();
-
-    const servicio = document.getElementById('servicio').value;
-    const comentario = document.getElementById('comentario').value;
-
-    if (calificacionSeleccionada > 0) {
-        // Guardar las reseñas en una lista
-        const nuevaReseña = {
-            servicio,
-            calificacion: calificacionSeleccionada,
-            comentario
-        };
-
-        let reseñasGuardadas = JSON.parse(localStorage.getItem('reseñas')) || [];
-        reseñasGuardadas.push(nuevaReseña);
-        localStorage.setItem('reseñas', JSON.stringify(reseñasGuardadas));
-
-        // Redirigir a la nueva página
-        window.location.href = 'reseña-mostrada.html';
-    } else {
-        alert('Por favor, selecciona una calificación.');
-    }
 });

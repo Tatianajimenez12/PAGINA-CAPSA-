@@ -53,19 +53,15 @@
         <!-- Formulario de verificación -->
         <div id="verificacionSection">
             <h3>Ingresa tus datos para verificar tu identidad</h3>
-            <form id="verificacionForm" action="/verificar" method="POST">
-                <label for="nombre">Nombre completo</label>
-                <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
-
-                <label for="correo">Correo electrónico</label>
-                <input type="email" id="correo" name="correo" placeholder="Tu correo" required>
-
-                <label for="telefono">Teléfono</label>
-                <input type="tel" id="telefono" name="telefono" placeholder="Tu teléfono" required>
-
-                <button type="submit">Verificar datos</button>
+            <form id="verificarForm">
+                <input type="text" name="nombre" placeholder="Nombre" required />
+                <input type="email" name="correo" placeholder="Correo" required />
+                <input type="tel" name="telefono" placeholder="Teléfono" required />
+                <button type="submit">Verificar</button>
             </form>
-        </div>
+            
+            <script src="script.js"></script>
+                    </div>
     </div>
 
     <script>

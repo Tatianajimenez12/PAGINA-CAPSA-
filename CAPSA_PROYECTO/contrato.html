@@ -50,10 +50,9 @@
     <div class="d-flex justify-content-between align-items-start formulario-container">
         <div class="formulario-panel">
             <h1 class="text-center mb-4">Únete a nuestro equipo de especialistas en salud y educación inclusiva</h1>
-            <p class="text-center mb-4">Estamos en búsqueda de profesionales comprometidos para ofrecer atención integral que combine cuidado de calidad con apoyo educativo. Si eres un especialista en salud domiciliaria interesado en contribuir al bienestar de estudiantes, docentes,
-                personal administrativo y sus familias, ¡postúlate aquí!</p>
-
-            <form action="/submit" method="POST" enctype="multipart/form-data">
+            <p class="text-center mb-4">Estamos en búsqueda de profesionales comprometidos para ofrecer atención integral que combine cuidado de calidad con apoyo educativo. Si eres un especialista en salud domiciliaria interesado en contribuir al bienestar de estudiantes, docentes, personal administrativo y sus familias, ¡postúlate aquí!</p>
+    
+            <form action="/postulaciones" method="POST" enctype="multipart/form-data">
                 <fieldset>
                     <legend>Datos personales</legend>
                     <div class="row mb-3">
@@ -77,7 +76,7 @@
                         </div>
                     </div>
                 </fieldset>
-
+    
                 <fieldset>
                     <legend>Información profesional</legend>
                     <div class="row mb-3">
@@ -99,21 +98,21 @@
                         </div>
                     </div>
                 </fieldset>
-
+    
                 <fieldset>
                     <legend>Documentos adjuntos</legend>
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label for="cv" class="form-label">Currículum Vitae (CV)</label>
-                            <input type="file" class="form-control" id="cv" name="cv" required>
+                            <input type="file" class="form-control" id="cv" name="cv" accept="application/pdf" required>
                         </div>
                         <div class="col-md-6">
                             <label for="cedulaProfesional" class="form-label">Cédula profesional o certificaciones</label>
-                            <input type="file" class="form-control" id="cedulaProfesional" name="cedulaProfesional" required>
+                            <input type="file" class="form-control" id="cedulaProfesional" name="cedulaProfesional" accept="application/pdf" required>
                         </div>
                     </div>
                 </fieldset>
-
+    
                 <fieldset>
                     <legend>Disponibilidad</legend>
                     <div class="row mb-3">
@@ -127,19 +126,20 @@
                         </div>
                     </div>
                 </fieldset>
-
+    
                 <div class="d-grid gap-2">
                     <button type="submit" class="btn btn-primary">Enviar postulación</button>
                 </div>
             </form>
         </div>
-
+    
         <div class="formulario-image">
             <img src="cuidadora_alumno.jpg" alt="cuidadora y alumno" class="img-fluid">
             <img src="cuidador_profesor.jpg" alt="cuidador y profesor" class="img-fluid">
             <img src="cuidador_familiar.jpg" alt="cuidador y familiar" class="img-fluid">
         </div>
     </div>
+    
     <!-- Botón de WhatsApp -->
     <div class="whatsapp-container">
         <div class="whatsapp-message">Contáctate con nosotros</div>
