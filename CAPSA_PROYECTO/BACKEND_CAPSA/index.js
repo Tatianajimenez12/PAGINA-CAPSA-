@@ -89,7 +89,7 @@ app.post('/clientes', (req, res) => {
             return res.status(500).send('Error al guardar los datos');
         }
 
-        const mensaje = `Nuevo registro en Cliente:
+        const mensaje = `Nuevo registro para aclaración de dudas:
         Nombre: ${name}
         Teléfono: ${phone}
         Correo: ${correo}
@@ -147,7 +147,7 @@ app.post(
         // Enviar el correo
         enviarCorreo('Nueva Postulación', mensaje, archivosAdjuntos);
 
-        res.status(200).send('Postulación enviada exitosamente');
+        res.send('Postulación enviada y registrada exitosamente');
     }
 );
 
@@ -166,7 +166,7 @@ app.post('/verificar', upload.none(), (req, res) => {
             return res.status(500).send('Error al guardar los datos');
         }
 
-        const mensaje = `Nuevo registro de verificación:
+        const mensaje = `Nuevo registro para opinión:
         Nombre: ${nombre}
         Correo: ${correo}
         Teléfono: ${telefono}`;
