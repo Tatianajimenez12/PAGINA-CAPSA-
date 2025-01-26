@@ -10,12 +10,10 @@ const fs = require('fs');
 const app = express();
 const port = 3000;
 
-// Middleware para servir archivos estáticos
-app.use(express.static(path.join(__dirname, 'public')));
 
 // Punto de entrada para la página principal
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    res.sendFile(path.join(__dirname, 'public', 'contrato.html'));
 });
 
 const storage = multer.memoryStorage();  // Almacenamiento en memoria
@@ -23,6 +21,8 @@ const upload = multer({
     storage: storage,
     limits: { fileSize: 5 * 1024 * 1024 }, // Límite de 5 MB
 });
+
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
@@ -103,103 +103,60 @@ app.post('/clientes', (req, res) => {
 });
 
 // Ruta para insertar datos en la tabla `postulaciones` y enviar correo
-app.post('/postulaciones', upload.fields([
-    { name: 'cv', maxCount: 1 },
-    { name: 'cedulaProfesional', maxCount: 1 },
-]), (req, res) => {
-    const { nombreCompleto, correoElectronico, telefonoContacto, direccion, especialidad, horariosDisponibles } = req.body;
+app.post(
+    '/postulaciones',
+    upload.fields([
+        { name: 'cv', maxCount: 1 },
+        { name: 'cedulaProfesional', maxCount: 1 },
+    ]),
+    (req, res) => {
+        const {
+            nombreCompleto,
+            correoElectronico,
+            telefonoContacto,
+            direccion,
+            especialidad,
+            horariosDisponibles,
+        } = req.body;
 
-    // Verificar que los archivos existen
-    const cvFile = req.files['cv'] ? req.files['cv'][0] : null;
-    const cedulaFile = req.files['cedulaProfesional'] ? req.files['cedulaProfesional'][0] : null;
-
-    // Convertir horarios disponibles a texto
-    const horariosTexto = Array.isArray(horariosDisponibles) ? horariosDisponibles.join(', ') : horariosDisponibles;
-
-    const sql = `INSERT INTO postulaciones_nueva
-                 (nombre, correo, telefono, direccion, especialidad, horarios, cv, cedula) 
-                 VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
-
-    db.query(sql, [
-        nombreCompleto,
-        correoElectronico,
-        telefonoContacto,
-        direccion,
-        especialidad,
-        horariosTexto,
-        cvFile ? cvFile.originalname : null,
-        cedulaFile ? cedulaFile.originalname : null
-    ], (err) => {
-        if (err) {
-            console.error('Error al insertar datos en postulaciones:', err);
-            return res.status(500).send('Error al guardar los datos');
-        }
-
-        // Crear el mensaje del correo
+        // Construir el mensaje del correo
         const mensaje = `
-            Nueva postulación:
-            - Nombre: ${nombreCompleto}
-            - Correo: ${correoElectronico}
+            Nueva postulación recibida:
+            - Nombre Completo: ${nombreCompleto}
+            - Correo Electrónico: ${correoElectronico}
             - Teléfono: ${telefonoContacto}
-            - Dirección: ${direccion}
-            - Especialidad: ${especialidad}
-            - Horarios disponibles: ${horariosTexto}
-        `;
+            - Dirección: ${direccion || 'No especificada'}
+            - Especialidad: ${especialidad || 'No especificada'}
+            - Horarios Disponibles: ${horariosDisponibles || 'No especificados'}`;
 
-        // Crear la lista de archivos adjuntos
-        const adjuntos = [];
-        if (cvFile) {
-            adjuntos.push({ filename: cvFile.originalname, content: cvFile.buffer });
-        }
-        if (cedulaFile) {
-            adjuntos.push({ filename: cedulaFile.originalname, content: cedulaFile.buffer });
-        }
-
-        // Configurar el correo para el administrador
-        const mailOptions = {
-            from: '"Sistema CAPSA" <ana47926@gmail.com>',
-            to: 'ana47926@gmail.com',
-            subject: 'Nueva postulación registrada',
-            text: mensaje,
-            attachments: adjuntos
-        };
-
-        // Enviar el correo al administrador
-        transporter.sendMail(mailOptions, (err, info) => {
-            if (err) {
-                console.error('Error al enviar el correo al administrador:', err);
-                return res.status(500).send('Error al enviar el correo al administrador');
-            }
-            console.log('Correo al administrador enviado:', info.response);
-
-            // Enviar correo de confirmación al usuario
-            const confirmacionMailOptions = {
-                from: '"Sistema CAPSA" <ana47926@gmail.com>',
-                to: correoElectronico,  // Correo del usuario que hizo la postulación
-                subject: 'Confirmación de postulación registrada',
-                text: `Hola ${nombreCompleto},\n\nTu postulación ha sido recibida con éxito.\n\nLos detalles de tu postulación son los siguientes:\n\n${mensaje}`,
-                attachments: adjuntos // Los mismos archivos adjuntos que se enviaron al administrador
-            };
-
-            // Enviar el correo de confirmación al usuario
-            transporter.sendMail(confirmacionMailOptions, (err, info) => {
-                if (err) {
-                    console.error('Error al enviar el correo de confirmación:', err);
-                    return res.status(500).send('Error al enviar el correo de confirmación');
-                }
-                console.log('Correo de confirmación enviado al usuario:', info.response);
-                res.send('Datos registrados, correo al administrador y confirmación al usuario enviados con archivos adjuntos');
+        // Preparar los archivos como adjuntos
+        const archivosAdjuntos = [];
+        if (req.files['cv']) {
+            archivosAdjuntos.push({
+                filename: req.files['cv'][0].originalname,
+                content: req.files['cv'][0].buffer,
             });
-        });
-    });
-});
+        }
+        if (req.files['cedulaProfesional']) {
+            archivosAdjuntos.push({
+                filename: req.files['cedulaProfesional'][0].originalname,
+                content: req.files['cedulaProfesional'][0].buffer,
+            });
+        }
+        
+        // Enviar el correo
+        enviarCorreo('Nueva Postulación', mensaje, archivosAdjuntos);
+
+        res.status(200).send('Postulación enviada exitosamente');
+    }
+);
 
 
 // Ruta para insertar datos en la tabla `verificar` y enviar correo
 app.post('/verificar', upload.none(), (req, res) => {
     const { nombre, correo, telefono } = req.body;
 
-    const sql = `INSERT INTO verificar 
+    const sql = `INSERT INTO verificacion 
                  (nombre, correo, telefono) 
                  VALUES (?, ?, ?)`;
 
