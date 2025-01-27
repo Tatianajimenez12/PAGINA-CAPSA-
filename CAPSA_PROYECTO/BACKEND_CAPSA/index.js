@@ -13,7 +13,7 @@ const port = 3000;
 
 // Punto de entrada para la página principal
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'contrato.html'));
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 const storage = multer.memoryStorage();  // Almacenamiento en memoria
