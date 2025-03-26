@@ -12,8 +12,7 @@
     <link rel="stylesheet" href="whatsapp_button.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
-</head>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script></head>
 
 <body class="p-3 m-0 border-0 bd-example m-0 border-0">
     <!-- Fondo de pantalla -->
@@ -60,33 +59,116 @@
                 <button type="submit">Verificar</button>
             </form>
             
-            <script src="script.js"></script>
                     </div>
     </div>
 
-    <script>
-        const form = document.getElementById('verificacionForm');
 
-        form.addEventListener('submit', async(event) => {
-            event.preventDefault();
+    <!-- Modal de Confirmación -->
+<div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmationModalLabel">¡Éxito!</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ¡Recibido! 
+                En breve nos pondremos en contacto contigo. ¡Gracias!
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
 
-            const formData = new FormData(form);
 
-            const response = await fetch('/verificar', {
-                method: 'POST',
-                body: formData,
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        // WhatsApp (mantén este código)
+        const whatsappButton = document.getElementById("whatsappButton");
+        const whatsappQR = document.getElementById("whatsappQR");
+        const closeQRButton = document.getElementById("closeQR");
+
+        if (whatsappButton && whatsappQR && closeQRButton) {
+            whatsappButton.addEventListener("click", () => {
+                whatsappQR.style.display = whatsappQR.style.display === "none" ? "block" : "none";
             });
 
-            if (response.ok) {
-                alert('Datos guardados exitosamente');
-                form.reset();
-            } else {
-                alert('Hubo un error al guardar los datos');
-            }
-        });
-    </script>
+            closeQRButton.addEventListener("click", () => {
+                whatsappQR.style.display = "none";
+            });
+        }
 
-    <script src="script.js"></script>
+        // Control del formulario (única instancia)
+        const form = document.getElementById('verificarForm');
+        if (!form) return; // Si no existe el formulario, salir
+        
+        // Variable de control con alcance de bloque
+        let isSubmitting = false;
+        const submitButton = form.querySelector('button[type="submit"]');
+
+        // Remover cualquier listener previo para evitar duplicados
+        form.removeEventListener('submit', handleSubmit);
+        form.addEventListener('submit', handleSubmit);
+
+        async function handleSubmit(event) {
+            event.preventDefault();
+            
+            // Doble verificación de estado
+            if (isSubmitting || submitButton.disabled) return;
+            isSubmitting = true;
+            
+            const originalButtonText = submitButton.innerHTML;
+            
+            // Feedback visual mejorado
+            submitButton.disabled = true;
+            submitButton.innerHTML = `
+                <span class="spinner-border spinner-border-sm" 
+                      role="status" 
+                      aria-hidden="true"></span>
+                Enviando...
+            `;
+
+            try {
+                const formData = new FormData(form);
+                const response = await fetch('/verificar', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Error HTTP: ${response.status}`);
+                }
+                
+                const result = await response.text();
+                console.log('Respuesta del servidor:', result);
+                
+                // Modal con timeout para asegurar visualización
+                setTimeout(() => {
+                    const modal = new bootstrap.Modal(document.getElementById('confirmationModal'));
+                    const modalBody = document.querySelector('#confirmationModal .modal-body');
+                    modalBody.textContent = result.includes('Datos registrados') 
+                        ? result 
+                        : 'Datos enviados correctamente';
+                    modal.show();
+                }, 100);
+                
+                form.reset();
+            } catch (error) {
+                console.error('Error en el envío:', error);
+                alert('Error al enviar el formulario: ' + error.message);
+            } finally {
+                // Restauración garantizada
+                isSubmitting = false;
+                if (submitButton) {
+                    submitButton.disabled = false;
+                    submitButton.innerHTML = originalButtonText;
+                }
+            }
+        }
+    });
+    </script>
 </body>
 <!-- Botón de WhatsApp -->
 <div class="whatsapp-container">
@@ -108,24 +190,5 @@
     <p>&copy; 2024 CAPSA. Todos los derechos reservados.</p>
 </footer>
 <!-- Scripts -->
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const whatsappButton = document.getElementById("whatsappButton");
-        const whatsappQR = document.getElementById("whatsappQR");
-        const closeQRButton = document.getElementById("closeQR");
-
-        if (whatsappButton && whatsappQR && closeQRButton) {
-            whatsappButton.addEventListener("click", () => {
-                whatsappQR.style.display = whatsappQR.style.display === "none" ? "block" : "none";
-            });
-
-            closeQRButton.addEventListener("click", () => {
-                whatsappQR.style.display = "none";
-            });
-        } else {
-            console.error("Elementos del botón de WhatsApp no encontrados en el DOM.");
-        }
-    });
-</script>
 
 </html>

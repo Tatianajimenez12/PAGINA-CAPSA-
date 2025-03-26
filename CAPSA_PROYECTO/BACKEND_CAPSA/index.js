@@ -146,8 +146,9 @@ app.post(
         
         // Enviar el correo
         enviarCorreo('Nueva Postulación', mensaje, archivosAdjuntos);
+        res.json({ message: "Los datos se han guardado correctamente." });
 
-        res.send('Postulación enviada y registrada exitosamente');
+
     }
 );
 
@@ -172,7 +173,8 @@ app.post('/verificar', upload.none(), (req, res) => {
         Teléfono: ${telefono}`;
 
         enviarCorreo('Nuevo registro de verificación', mensaje);
-        res.send('Datos registrados y correo enviado');
+        res.json({ success: 'Datos enviados correctamente' });
+
     });
 });
 

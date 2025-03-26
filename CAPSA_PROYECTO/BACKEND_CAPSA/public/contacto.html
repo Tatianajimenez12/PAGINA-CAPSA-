@@ -84,6 +84,25 @@
                 <button type="submit">Enviar Mensaje</button>
             </form>
         </div>
+
+          <!-- Modal de Confirmación -->
+<div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmationModalLabel">¡Éxito!</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ¡Recibido!
+                Hemos recibido tu mensaje y te responderemos pronto.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
     </main>
 
     <!-- Botón de WhatsApp -->
@@ -133,6 +152,7 @@
 
             const formData = new FormData(this);
 
+
             fetch('http://localhost:3000/clientes', {
                     method: 'POST',
                     body: JSON.stringify({
@@ -150,11 +170,12 @@
                 .then(response => response.text())
                 .then(result => {
                     console.log(result);
-                    alert('Datos insertados correctamente');
+                    const confirmationModal = new bootstrap.Modal(document.getElementById('confirmationModal'));
+                    confirmationModal.show();
+                    form.reset();
                 })
                 .catch(error => {
                     console.error('Error:', error);
-                    alert('Error al insertar los datos');
                 });
         });
     </script>

@@ -52,7 +52,7 @@
             <h1 class="text-center mb-4">Únete a nuestro equipo de especialistas en salud y educación inclusiva</h1>
             <p class="text-center mb-4">Estamos en búsqueda de profesionales comprometidos para ofrecer atención integral que combine cuidado de calidad con apoyo educativo. Si eres un especialista en salud domiciliaria interesado en contribuir al bienestar de estudiantes, docentes, personal administrativo y sus familias, ¡postúlate aquí!</p>
     
-            <form action="/postulaciones" method="POST" enctype="multipart/form-data">
+            <form id="verificarFormulario" action="/postulaciones" method="POST" enctype="multipart/form-data">
                 <fieldset>
                     <legend>Datos personales</legend>
                     <div class="row mb-3">
@@ -139,7 +139,26 @@
             <img src="cuidador_familiar.jpg" alt="cuidador y familiar" class="img-fluid">
         </div>
     </div>
-    
+
+    <!-- Modal de Confirmación -->
+<div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmationModalLabel">¡Éxito!</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ¡Postulación exitosa!
+                Valoramos tu tiempo y talento. Te avisaremos si pasas a la siguiente etapa.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>    
+
     <!-- Botón de WhatsApp -->
     <div class="whatsapp-container">
         <div class="whatsapp-message">Contáctate con nosotros</div>
@@ -159,6 +178,53 @@
         <p>&copy; 2024 CAPSA. Todos los derechos reservados.</p>
     </footer>
     <!-- Scripts -->
+    <script>
+        document.getElementById('formulario-clientes').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // Control de envíos duplicados
+            if (this.isSubmitting) return;
+            this.isSubmitting = true; // Usamos una propiedad del formulario
+            
+            const form = this;
+            const submitButton = form.querySelector('button[type="submit"]');
+            submitButton.disabled = true;
+            
+            const formData = {
+                name: form.elements['name'].value,
+                phone: form.elements['phone'].value,
+                correo: form.elements['correo'].value,
+                servicio: form.elements['servicio'].value,
+                comunicacion: form.elements['comunicacion'].value,
+                comentarios: form.elements['comunicacion'].value
+            };
+        
+            fetch('http://localhost:3000/clientes', {
+                method: 'POST',
+                body: JSON.stringify(formData),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                if (!response.ok) throw new Error('Error en el servidor');
+                return response.text();
+            })
+            .then(result => {
+                console.log('Respuesta del servidor:', result);
+                new bootstrap.Modal(document.getElementById('confirmationModal')).show();
+                form.reset();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error al enviar: ' + error.message);
+            })
+            .finally(() => {
+                form.isSubmitting = false; // Liberamos el formulario
+                submitButton.disabled = false;
+            });
+        });
+        </script>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const whatsappButton = document.getElementById("whatsappButton");
