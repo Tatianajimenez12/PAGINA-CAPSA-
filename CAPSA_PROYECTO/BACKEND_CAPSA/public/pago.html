@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Pago</title>
+    <link rel="stylesheet" href="pago.css">
+</head>
+
+<body>
+    <div class="container">
+        <h2>Formulario de Pago</h2>
+
+        <section class="datos-personales">
+            <h3>Datos Personales</h3>
+            <div class="field-group">
+                <input type="text" placeholder="Nombre(s)" required>
+                <input type="text" placeholder="Apellido Paterno" required>
+                <input type="text" placeholder="Apellido Materno" required>
+            </div>
+            <div class="field-group">
+                <input type="text" placeholder="CURP" required>
+                <input type="text" placeholder="RFC">
+            </div>
+        </section>
+
+        <section class="domicilio">
+            <h3>Domicilio</h3>
+            <div class="field-group">
+                <input type="text" placeholder="Calle" required>
+                <input type="text" placeholder="Número Exterior">
+                <input type="text" placeholder="Número Interior">
+            </div>
+            <div class="field-group">
+                <input type="text" placeholder="Colonia" required>
+                <input type="text" placeholder="Localidad">
+                <input type="text" placeholder="Municipio">
+            </div>
+            <div class="field-group">
+                <input type="text" placeholder="Estado" required>
+                <input type="text" placeholder="Código Postal" required>
+                <input type="tel" placeholder="Teléfono Celular o Casa" required>
+            </div>
+        </section>
+
+        <section class="servicios">
+            <h3>Selecciona los Servicios</h3>
+            <select multiple id="servicios">
+                <option value="50">Toma de Signos Vitales - $50</option>
+                <option value="80">Promoción a la Salud - $80</option>
+                <option value="100">Medicina Preventiva - $100</option>
+                <option value="70">Toma de Glucemia - $70</option>
+                <option value="90">Tamizaje Metabólico - $90</option>
+            </select>
+        </section>
+
+        <section class="cantidad">
+            <h3>Cantidad de Pagos</h3>
+            <input type="number" id="cantidad" min="1" value="1">
+        </section>
+
+        <section class="resultado">
+            <h3>Tarifa Total</h3>
+            <p id="tarifa">$0</p>
+        </section>
+
+        <div class="botones">
+            <button id="validar">Validar</button>
+            <button id="cancelar">Cancelar</button>
+        </div>
+    </div>
+</body>
+
+</html>
