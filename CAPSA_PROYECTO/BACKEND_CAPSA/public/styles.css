@@ -581,7 +581,7 @@ body {
 }
 
 .btn-solicitar {
-    background-color: #55e85a;
+    background-color: #236b81;
     /* Verde claro */
     color: white;
     padding: 10px 20px;
@@ -594,7 +594,7 @@ body {
 }
 
 .btn-solicitar:hover {
-    background-color: #45a049;
+    background-color: #12557a;
 }
 
 .image-container video {

@@ -1,38 +1,37 @@
+/* Estilos generales */
+
 body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #f5f5f5;
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
     margin: 0;
     padding: 20px;
+    background-color: #f5f5f5;
     color: #333;
 }
 
 .container {
-    max-width: 900px;
+    max-width: 800px;
     margin: 0 auto;
-    background: white;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-h2 {
-    color: #2c3e50;
-    text-align: center;
-    margin-bottom: 30px;
-}
-
+h2,
 h3 {
-    color: #4b7eb0;
-    border-bottom: 2px solid #4b7eb0;
-    padding-bottom: 5px;
-    margin-top: 25px;
+    color: #2c3e50;
+    margin-bottom: 15px;
 }
+
+
+/* Estilos para los campos del formulario */
 
 .field-group {
     display: flex;
+    flex-wrap: wrap;
     gap: 15px;
     margin-bottom: 15px;
-    flex-wrap: wrap;
 }
 
 .field-group input,
@@ -41,112 +40,102 @@ h3 {
     min-width: 200px;
     padding: 10px;
     border: 1px solid #ddd;
-    border-radius: 5px;
+    border-radius: 4px;
     font-size: 16px;
 }
+
+.field-group input:focus,
+.field-group select:focus {
+    outline: none;
+    border-color: #3498db;
+}
+
+
+/* Estilos para los botones */
 
 .botones {
     display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-top: 30px;
-    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 20px;
+    gap: 10px;
 }
 
 button {
-    padding: 12px 25px;
+    padding: 10px 15px;
     border: none;
-    border-radius: 5px;
-    font-size: 16px;
+    border-radius: 4px;
     cursor: pointer;
-    transition: all 0.3s;
-    min-width: 120px;
+    font-size: 16px;
+    transition: background-color 0.3s;
 }
 
-#validar {
-    background-color: #27ae60;
+button[type="submit"] {
+    background-color: #2ecc71;
     color: white;
 }
 
-#validar:hover:not(:disabled) {
-    background-color: #2ecc71;
-}
-
-#validar:disabled {
+button[type="submit"]:disabled {
     background-color: #95a5a6;
     cursor: not-allowed;
-    opacity: 0.7;
 }
 
-#cancelarForm {
+button[type="button"] {
     background-color: #e74c3c;
     color: white;
 }
 
-#cancelarForm:hover {
-    background-color: #c0392b;
-}
-
-#cancelarSalir {
+button[type="button"]:last-child {
     background-color: #3498db;
-    color: white;
 }
 
-#cancelarSalir:hover {
-    background-color: #2980b9;
+button:hover:not(:disabled) {
+    opacity: 0.9;
 }
+
+
+/* Estilos para la sección de resultado */
 
 .resultado {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #e8f8f5;
+    border-radius: 4px;
     text-align: center;
-    margin: 30px 0;
-    padding: 20px;
-    background-color: #f8f9fa;
-    border-radius: 5px;
     display: none;
 }
 
 .btn-descargar {
     display: inline-block;
-    padding: 12px 25px;
-    background-color: #2c3e50;
+    padding: 10px 15px;
+    background-color: #3498db;
     color: white;
     text-decoration: none;
-    border-radius: 5px;
-    font-size: 16px;
-    margin-top: 15px;
-    transition: background-color 0.3s;
-}
-
-.btn-descargar:hover {
-    background-color: #1a252f;
+    border-radius: 4px;
+    margin-top: 10px;
 }
 
 
-/* Estilos para validación */
+/* Estilos para campos inválidos */
 
 input:invalid,
 select:invalid {
-    border-color: #e74c3c;
-    background-color: #ffebee;
+    border-color: #3a8999;
 }
 
 input:valid,
 select:valid {
-    border-color: #2ecc71;
+    border-color: #3a8999;
 }
 
-@media (max-width: 768px) {
+
+/* Responsive */
+
+@media (max-width: 600px) {
     .field-group {
         flex-direction: column;
-        gap: 10px;
-    }
-    .field-group input,
-    .field-group select {
-        width: 100%;
     }
     .botones {
         flex-direction: column;
-        align-items: center;
     }
     button {
         width: 100%;
