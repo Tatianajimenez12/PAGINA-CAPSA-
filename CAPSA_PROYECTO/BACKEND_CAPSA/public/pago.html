@@ -12,64 +12,67 @@
     <div class="container">
         <h2>Formulario de Pago</h2>
 
-        <section class="datos-personales">
-            <h3>Datos Personales</h3>
-            <div class="field-group">
-                <input type="text" placeholder="Nombre(s)" required>
-                <input type="text" placeholder="Apellido Paterno" required>
-                <input type="text" placeholder="Apellido Materno" required>
-            </div>
-            <div class="field-group">
-                <input type="text" placeholder="CURP" required>
-                <input type="text" placeholder="RFC">
-            </div>
-        </section>
+        <form id="formularioPago" action="procesar_pago.php" method="POST">
+            <section class="datos-personales">
+                <h3>Datos Personales</h3>
+                <div class="field-group">
+                    <input type="text" id="nombre" name="nombre" placeholder="Nombre(s)" required>
+                    <input type="text" id="apellidoPaterno" name="apellido_paterno" placeholder="Apellido Paterno" required>
+                    <input type="text" id="apellidoMaterno" name="apellido_materno" placeholder="Apellido Materno" required>
+                </div>
+                <div class="field-group">
+                    <input type="text" id="curp" name="curp" placeholder="CURP" required>
+                    <input type="text" id="rfc" name="rfc" placeholder="RFC">
+                </div>
+            </section>
 
-        <section class="domicilio">
-            <h3>Domicilio</h3>
-            <div class="field-group">
-                <input type="text" placeholder="Calle" required>
-                <input type="text" placeholder="Número Exterior">
-                <input type="text" placeholder="Número Interior">
+            <section class="domicilio">
+                <h3>Domicilio</h3>
+                <div class="field-group">
+                    <input type="text" id="calle" name="calle" placeholder="Calle" required>
+                    <input type="text" id="numeroExterior" name="numero_exterior" placeholder="Número Exterior">
+                    <input type="text" id="numeroInterior" name="numero_interior" placeholder="Número Interior">
+                </div>
+                <div class="field-group">
+                    <input type="text" id="colonia" name="colonia" placeholder="Colonia" required>
+                    <input type="text" id="localidad" name="localidad" placeholder="Localidad">
+                    <input type="text" id="municipio" name="municipio" placeholder="Municipio">
+                </div>
+                <div class="field-group">
+                    <input type="text" id="estado" name="estado" placeholder="Estado" required>
+                    <input type="text" id="codigoPostal" name="codigo_postal" placeholder="Código Postal" required>
+                    <input type="tel" id="telefono" name="telefono" placeholder="Teléfono Celular o Casa" required>
+                </div>
+            </section>
+
+            <section class="servicio">
+                <h3>Servicio y Pago</h3>
+                <div class="field-group">
+                    <select id="servicio" name="servicio" required>
+                        <option value="" disabled selected>Seleccione un servicio</option>
+                        <option value="Consulta General">Consulta General - $300.00</option>
+                        <option value="Estudios de Laboratorio">Estudios de Laboratorio - $500.00</option>
+                        <option value="Procedimiento Médico">Procedimiento Médico - $800.00</option>
+                    </select>
+                    <input type="number" id="monto" name="monto" placeholder="Monto" readonly required>
+                </div>
+            </section>
+
+            <div class="botones">
+                <button type="submit" id="validar" disabled>Validar y Generar Comprobante</button>
+                <button type="button" id="cancelarForm">Cancelar</button>
+                <button type="button" id="cancelarSalir">Regresar</button>
             </div>
-            <div class="field-group">
-                <input type="text" placeholder="Colonia" required>
-                <input type="text" placeholder="Localidad">
-                <input type="text" placeholder="Municipio">
-            </div>
-            <div class="field-group">
-                <input type="text" placeholder="Estado" required>
-                <input type="text" placeholder="Código Postal" required>
-                <input type="tel" placeholder="Teléfono Celular o Casa" required>
-            </div>
-        </section>
+        </form>
 
-        <section class="servicios">
-            <h3>Selecciona los Servicios</h3>
-            <select multiple id="servicios">
-                <option value="50">Toma de Signos Vitales - $50</option>
-                <option value="80">Promoción a la Salud - $80</option>
-                <option value="100">Medicina Preventiva - $100</option>
-                <option value="70">Toma de Glucemia - $70</option>
-                <option value="90">Tamizaje Metabólico - $90</option>
-            </select>
-        </section>
-
-        <section class="cantidad">
-            <h3>Cantidad de Pagos</h3>
-            <input type="number" id="cantidad" min="1" value="1">
-        </section>
-
-        <section class="resultado">
-            <h3>Tarifa Total</h3>
-            <p id="tarifa">$0</p>
-        </section>
-
-        <div class="botones">
-            <button id="validar">Validar</button>
-            <button id="cancelar">Cancelar</button>
+        <div id="resultado" class="resultado" style="display: none;">
+            <h3>Comprobante Generado</h3>
+            <p>¡Su comprobante de pago ha sido generado exitosamente!</p>
+            <a id="descargarComprobante" href="#" class="btn-descargar">Descargar Comprobante</a>
         </div>
     </div>
+
+    <script src="pago.js"></script>
 </body>
 
 </html>
