@@ -29,12 +29,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // =============================================
     // FUNCIONES DE VALIDACIÓN
     // =============================================
-    function validarRFC(rfc) {
-        if (!rfc) return true; // No es requerido
-        const regex = /^[A-ZÑ&]{3,4}\d{6}[A-Z0-9]{3}$/;
-        return regex.test(rfc);
-    }
-
     function validarCURP(curp) {
         const regex = /^[A-Z]{4}\d{6}[HM][A-Z]{5}[A-Z\d]\d$/;
         return regex.test(curp);
@@ -63,14 +57,12 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         // Validaciones específicas
-        const rfc = document.getElementById('rfc').value;
         const curp = document.getElementById('curp').value;
         const codigoPostal = document.getElementById('codigoPostal').value;
         const telefono = document.getElementById('telefono').value;
         const servicio = document.getElementById('servicio').value;
 
         const validacionesEspeciales = (
-            validarRFC(rfc) &&
             validarCURP(curp) &&
             validarCodigoPostal(codigoPostal) &&
             validarTelefono(telefono) &&
@@ -105,14 +97,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     btnCancelarSalir.addEventListener('click', function() {
         window.history.back();
-    });
-
-    document.getElementById('rfc').addEventListener('blur', function() {
-        if (this.value && !validarRFC(this.value)) {
-            alert('Por favor ingrese un RFC válido (ej. ABC123456XYZ)');
-            this.focus();
-        }
-        verificarFormulario();
     });
 
     document.getElementById('curp').addEventListener('blur', function() {
@@ -205,7 +189,6 @@ document.addEventListener('DOMContentLoaded', function() {
         doc.setFontSize(10);
         doc.text(`Nombre: ${datos.nombre} ${datos.apellido_paterno} ${datos.apellido_materno}`, 20, 77);
         doc.text(`CURP: ${datos.curp}`, 20, 82);
-        if (datos.rfc) doc.text(`RFC: ${datos.rfc}`, 20, 87);
         doc.text(`Teléfono: ${datos.telefono}`, 20, 92);
         doc.text(`Domicilio: ${datos.calle} ${datos.numero_exterior} ${datos.numero_interior ? 'Int. ' + datos.numero_interior : ''}`, 20, 97);
         doc.text(`${datos.colonia}, ${datos.municipio}, ${datos.estado}, C.P. ${datos.codigo_postal}`, 20, 102);
