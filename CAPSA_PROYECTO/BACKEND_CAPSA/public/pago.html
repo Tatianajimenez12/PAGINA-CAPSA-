@@ -10,11 +10,11 @@
 
 <body>
     <div class="container">
-        <h2>Formulario de Pago</h2>
+        <h2>FORMULARIO DE PAGO</h2>
 
-        <form id="formularioPago" action="procesar_pago.php" method="POST">
+        <form id="formularioPago" method="POST">
             <section class="datos-personales">
-                <h3>Datos Personales</h3>
+                <h3>Datos personales</h3>
                 <div class="field-group">
                     <input type="text" id="nombre" name="nombre" placeholder="Nombre(s)" required>
                     <input type="text" id="apellidoPaterno" name="apellido_paterno" placeholder="Apellido Paterno" required>
@@ -22,7 +22,6 @@
                 </div>
                 <div class="field-group">
                     <input type="text" id="curp" name="curp" placeholder="CURP" required>
-                    <input type="text" id="rfc" name="rfc" placeholder="RFC">
                 </div>
             </section>
 
@@ -46,32 +45,40 @@
             </section>
 
             <section class="servicio">
-                <h3>Servicio y Pago</h3>
+                <h3>Servicio y pago</h3>
                 <div class="field-group">
                     <select id="servicio" name="servicio" required>
-                        <option value="" disabled selected>Seleccione un servicio</option>
-                        <option value="Consulta General">Consulta General - $300.00</option>
-                        <option value="Estudios de Laboratorio">Estudios de Laboratorio - $500.00</option>
-                        <option value="Procedimiento Médico">Procedimiento Médico - $800.00</option>
+                        <option value="" disabled selected>Seleccione un servicio o cuidado</option>
+                        <option value="por sesión (2 horas)">Servicios Básicos - $300.00</option>
+                        <option value="por sesión (2 horas)">Servicios Intermedios - $500.00</option>
+                        <option value="por sesión (2 horas)">Servicios Avanzados - $800.00</option>
+                        <option value="por día">Cuidados Básicos - $500.00</option>
+                        <option value="por día">Cuidados Intermedios - $800.00</option>
+                        <option value="por día">Cuidados Avanzados - $1000.00</option>
                     </select>
                     <input type="number" id="monto" name="monto" placeholder="Monto" readonly required>
                 </div>
             </section>
 
             <div class="botones">
-                <button type="submit" id="validar" disabled>Validar y Generar Comprobante</button>
+                <button type="submit" id="validar" disabled>Validar y Generar comprobante</button>
                 <button type="button" id="cancelarForm">Cancelar</button>
                 <button type="button" id="cancelarSalir">Regresar</button>
             </div>
         </form>
 
         <div id="resultado" class="resultado" style="display: none;">
-            <h3>Comprobante Generado</h3>
+            <h3>Comprobante generado</h3>
             <p>¡Su comprobante de pago ha sido generado exitosamente!</p>
-            <a id="descargarComprobante" href="#" class="btn-descargar">Descargar Comprobante</a>
+            <button id="descargarComprobante" class="btn-descargar">Descargar comprobante</button>
         </div>
     </div>
 
+    <!-- Incluir las librerías necesarias para jsPDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+
+    <!-- Incluir nuestro script después de las librerías -->
     <script src="pago.js"></script>
 </body>
 

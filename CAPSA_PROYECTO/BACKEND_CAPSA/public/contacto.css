@@ -25,7 +25,7 @@ main {
 }
 
 .contact-container {
-    background-color: #E1E1E1;
+    background-color: #53c0be;
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
@@ -58,7 +58,7 @@ form label {
     display: block;
     margin-top: 10px;
     font-weight: bold;
-    color: #165d5f;
+    color: #faffff;
 }
 
 input[type="text"],
