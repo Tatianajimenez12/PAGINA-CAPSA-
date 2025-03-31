@@ -1,92 +1,195 @@
-function toggleChatbot() {
-    const chatbotBody = document.getElementById('chatbotBody');
+// Función global para las sugerencias
+window.insertSuggestion = function(text) {
+    const userQuestionInput = document.getElementById('userQuestion');
+    if (userQuestionInput) {
+        userQuestionInput.value = text;
+        userQuestionInput.focus();
+    }
+};
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Estado y elementos del DOM
+    let isFirstInteraction = true;
     const chatbotContainer = document.querySelector('.chatbot-container');
-    const chatbotMessage = document.querySelector('.chatbot-message');
-
-    chatbotBody.style.display = chatbotBody.style.display === 'none' || !chatbotBody.style.display ? 'block' : 'none';
-    chatbotContainer.style.animation = 'none';
-    chatbotMessage.style.animation = 'none';
-
-    if (chatbotBody.style.display !== 'none' && !document.getElementById('chatbotMessages').innerHTML.trim()) {
-        document.getElementById('chatbotMessages').innerHTML =
-            `<div style="background-color: #f1f1f1; padding: 10px; margin: 5px; border-radius: 4px; align-self: flex-start;">
-                ¡Hola! Bienvenid@ al soporte de CAPSA. Estamos aquí para ayudarte. Por favor, ingresa tu nombre y correo electrónico para continuar.
-            </div>`;
-    }
-}
-
-function submitUserInfo() {
-    const name = document.getElementById('nameInput').value.trim();
-    const email = document.getElementById('emailInput').value.trim();
-
-    if (!name || !email) {
-        alert('Por favor, completa todos los campos.');
-        return;
-    }
-
+    const floatingBtn = document.querySelector('.chatbot-floating-btn');
+    const closeBtn = document.querySelector('.chatbot-close-btn');
+    const chatbotBody = document.getElementById('chatbotBody');
+    const userQuestionInput = document.getElementById('userQuestion');
+    const sendQuestionBtn = document.getElementById('sendQuestionBtn');
     const chatbotMessages = document.getElementById('chatbotMessages');
-    document.getElementById('chatbotForm').style.display = 'none';
-    document.getElementById('chatInputSection').style.display = 'block';
 
-    chatbotMessages.innerHTML +=
-        `<div style="text-align: center; font-weight: bold; margin: 10px;">
-            Hola ${name}, dinos cuál es tu duda y con gusto te ayudaremos.
-        </div>`;
-}
+    // Inicialización
+    initChatbot();
 
-function sendUserQuestion() {
-    const userQuestion = document.getElementById('userQuestion').value.trim();
-    if (!userQuestion) {
-        alert('Por favor, escribe tu pregunta.');
-        return;
+    function initChatbot() {
+        // Event listeners para el botón flotante y cierre
+        floatingBtn.addEventListener('click', toggleChatbot);
+        closeBtn.addEventListener('click', closeChatbot);
+        
+        // Event listeners para el funcionamiento del chat
+        userQuestionInput.addEventListener('keypress', handleKeyPress);
+        sendQuestionBtn.addEventListener('click', sendUserQuestion);
+
+        // Event delegation para las sugerencias
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('suggestion')) {
+                const question = e.target.getAttribute('data-question');
+                if (question) {
+                    insertSuggestion(question);
+                }
+            }
+        });
     }
 
-    const chatbotMessages = document.getElementById('chatbotMessages');
-    chatbotMessages.innerHTML +=
-        `<div style="text-align: right; background-color: #d1e7dd; padding: 10px; margin: 5px; border-radius: 4px; align-self: flex-end;">
-            ${userQuestion}
-        </div>`;
+    function toggleChatbot() {
+        const isVisible = chatbotBody.style.display === 'block';
+        chatbotBody.style.display = isVisible ? 'none' : 'block';
+        
+        if (!isVisible && isFirstInteraction) {
+            showWelcomeMessage();
+            isFirstInteraction = false;
+        }
+        
+        // Alternar clase active para estilos CSS
+        chatbotContainer.classList.toggle('active', chatbotBody.style.display === 'block');
+    }
 
-    const botResponse = getBotResponse(userQuestion);
-    chatbotMessages.innerHTML +=
-        `<div style="background-color: #f1f1f1; padding: 10px; margin: 5px; border-radius: 4px; align-self: flex-start;">
-            ${botResponse}
-        </div>`;
+    function closeChatbot(e) {
+        e.stopPropagation();
+        chatbotBody.style.display = 'none';
+        chatbotContainer.classList.remove('active');
+    }
 
-    document.getElementById('userQuestion').value = '';
-    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-}
+    function showWelcomeMessage() {
+        addMessageToChat(`
+            <div class="bot-message">
+                ¡Hola! Soy el asistente virtual de CAPSA. ¿En qué puedo ayudarte hoy?
+            </div>
+            <div class="bot-message suggestions">
+                <strong>Puedes preguntar sobre:</strong>
+                <div class="suggestion" data-question="¿Cómo contrato servicios para un adulto mayor?">Contratación de servicios</div>
+                <div class="suggestion" data-question="¿Qué documentos necesito para contratar?">Documentación requerida</div>
+                <div class="suggestion" data-question="¿Cuáles son sus horarios de atención?">Horarios de atención</div>
+            </div>
+        `);
+    }
 
-function getBotResponse(question) {
-    const responses = {
-        "hola": "Hola que tal como estas en que puedo ayudarte'.",
-        "contratar": "Para contratar un servicio, dirígete a la página principal de CAPSA y haz clic en 'CONTÁCTENOS'.",
-        "agendar": "Puedes agendar un servicio a través del ícono de WhatsApp en la página.",
-        "tiempo": "El tiempo de respuesta es de 24 horas aproximadamente.",
-        "calidad": "Contamos con personal altamente capacitado para garantizar la calidad del servicio.",
-        "paquetes": "Sí, ofrecemos paquetes especiales. Contáctanos para más información.",
-        "comunicar": "Puedes comunicarte con nosotros a través de WhatsApp o llamada al 5535112950.",
-        "opiniones": "Las opiniones de nuestros clientes están en la sección 'Reseñas'.",
-        "reseñas": "Para dejar una reseña, visita la sección 'Reseñas' en el menú principal.",
-        "horarios": "Nuestros servicios están disponibles las 24 horas del día.",
-        "navegar": "Para navegar en la página, usa el menú principal que incluye diferentes secciones.",
-        "gracias": "Denada cualquier otra duda que tengas por favor contactate por este medio o por el WhatsApp'.",
-    };
-
-    for (const key in responses) {
-        if (question.toLowerCase().includes(key)) {
-            return responses[key];
+    function handleKeyPress(e) {
+        if (e.key === 'Enter') {
+            sendUserQuestion();
         }
     }
 
-    return "Lo siento, no tengo una respuesta para esa pregunta. Contáctanos para más información a nuestro WhatsApp con el numero 5548176178 y con gusto te atenderemos.";
-}
+    async function sendUserQuestion() {
+        const question = userQuestionInput.value.trim();
+        if (!question) return;
 
-function closeChatbot() {
-    document.getElementById('chatbotBody').style.display = 'none';
-}
+        addMessageToChat(`<div class="user-message">${escapeHtml(question)}</div>`);
+        userQuestionInput.value = '';
+        
+        const thinkingId = showThinkingIndicator();
+        
+        try {
+            const response = await fetch('/api/chat', {
+                method: 'POST',
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'X-API-Key': '7F$jBm2@8zR-5tGv9yLn!4sPx6wQz3dK'
+                },
+                body: JSON.stringify({ 
+                    question ,
 
-function resetChatbot() {
-    document.getElementById('chatbotForm').style.display = 'block';
-    document.getElementById('chatInputSection').style.display = 'none';
-}
+                     // Configuración optimizada:
+                    model_config: {
+                        model: 'command',
+                        max_tokens: 300,  // Aumentamos el límite de tokens
+                        temperature: 0.3, // Reducimos para respuestas más deterministas
+                        p: 0.9,          // Control de diversidad
+                        k: 0,             // Evitar muestreo con baja probabilidad
+                        stop_sequences: ['\n'], // Detenerse en saltos de línea
+                        frequency_penalty: 0.5, // Reducir repeticiones
+                        presence_penalty: 0.5,  // Fomentar nuevos temas
+                        prompt_truncation: 'AUTO' // Truncamiento automático
+                }
+                
+                })
+
+            });
+            
+            if (!response.ok) throw new Error('Error en la respuesta del servidor');
+            
+            const data = await response.json();
+            removeThinkingIndicator(thinkingId);
+
+            // Procesamiento adicional de la respuesta
+            const cleanAnswer = cleanAIResponse(data.answer);
+            addMessageToChat(`<div class="bot-message">${formatBotResponse(data.answer)}</div>`);
+        } catch (error) {
+            removeThinkingIndicator(thinkingId);
+            addMessageToChat('<div class="error-message">Error al procesar tu pregunta. Por favor intenta nuevamente.</div>');
+            console.error('Error en sendUserQuestion:', error);
+        }
+    }
+
+    // Funciones auxiliares
+    function addMessageToChat(messageHtml) {
+        const messageElement = document.createElement('div');
+        messageElement.innerHTML = messageHtml;
+        chatbotMessages.appendChild(messageElement);
+        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
+
+    function showThinkingIndicator() {
+        const id = 'thinking-' + Date.now();
+        addMessageToChat(`
+            <div id="${id}" class="bot-message thinking">
+                <div class="typing-indicator">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        `);
+        return id;
+    }
+
+    function removeThinkingIndicator(id) {
+        const element = document.getElementById(id);
+        if (element) element.remove();
+    }
+
+    function escapeHtml(unsafe) {
+        return unsafe
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
+
+    function formatBotResponse(text) {
+        return text
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+            .replace(/\n/g, '<br>')
+            .replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank">$1</a>');
+    }
+
+    function cleanAIResponse(text) {
+        // Eliminar texto en inglés no deseado
+        let cleaned = text.replace(/(Translation|Note|English):.*?\n/gi, '');
+        
+        // Corregir frases cortadas
+        cleaned = cleaned.replace(/([^.!?])\s*$/, '$1.');
+        
+        // Eliminar código JSON o marcado no deseado
+        cleaned = cleaned.replace(/\{.*?\}/g, '');
+        cleaned = cleaned.replace(/\[.*?\]/g, '');
+        
+        // Asegurar que la respuesta esté en español
+        if (cleaned.includes('English') && !cleaned.includes('español')) {
+            cleaned = 'Lo siento, hubo un problema generando la respuesta. Por favor reformula tu pregunta.';
+        }
+        
+        return cleaned;
+    }
+});
