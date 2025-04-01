@@ -164,6 +164,7 @@ document.addEventListener('DOMContentLoaded', function() {
         doc.setFontSize(12);
         doc.text("LÍNEA DE CAPTURA PARA PAGO EN VENTANILLA", 105, 29, { align: 'center' });
 
+
         // =============================================
         // LÍNEA DE CAPTURA
         // =============================================
@@ -172,6 +173,8 @@ document.addEventListener('DOMContentLoaded', function() {
         doc.text(lineaCaptura.match(/.{1,6}/g).join(' '), 105, 40, { align: 'center' });
         doc.setFontSize(10);
         doc.text("POR FAVOR CAPTURE SIN ESPACIOS", 105, 45, { align: 'center' });
+
+
 
         // =============================================
         // DATOS GENERALES
