@@ -351,32 +351,6 @@
         </div>
     </div>
 
-    <!-- Chatbot -->
-    <div id="chatbot" class="chatbot-container">
-        <div class="chatbot-message">¡Haz clic para iniciar!</div>
-        <div class="chatbot-header" onclick="toggleChatbot()">
-            <img src="chatbot.png" alt="Chatbot Icono" class="chatbot-icon">
-        </div>
-        <div class="chatbot-body" id="chatbotBody">
-            <div id="chatbotMessages" class="chatbot-messages">
-                <!-- Mensajes del chatbot -->
-            </div>
-            <div id="chatbotForm" class="chatbot-form">
-                <label for="nameInput">Ingresa tu nombre completo:</label>
-                <input type="text" id="nameInput" placeholder="Nombre completo" />
-                <label for="emailInput">Ingresa tu correo electrónico:</label>
-                <input type="email" id="emailInput" placeholder="Correo electrónico" />
-                <button onclick="submitUserInfo()">Enviar</button>
-                <button id="closeFormBtn" class="close-chatbot" onclick="closeChatbot()">Cerrar</button>
-            </div>
-            <div id="chatInputSection" class="chatbot-input" style="display: none;">
-                <input type="text" id="userQuestion" placeholder="Escribe tu pregunta aquí..." />
-                <button onclick="sendUserQuestion()">Enviar</button>
-                <button id="closeInputBtn" class="close-chatbot" onclick="closeChatbot()">Cerrar</button>
-            </div>
-        </div>
-    </div>
-
     <!-- Footer -->
     <footer class="site-footer">
         <div class="container">
