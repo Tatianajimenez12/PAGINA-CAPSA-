@@ -1,184 +1,273 @@
+require('dotenv').config();
+
 const express = require('express');
-const mysql = require('mysql2');
+const mysql = require('mysql2/promise');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
+const { CohereClient } = require('cohere-ai');
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
+// ======================
+// 1. Configuración Inicial
+// ======================
+const requiredEnvVars = ['COHERE_API_KEY', 'DB_HOST', 'DB_USER', 'DB_NAME', 'GMAIL_USER', 'GMAIL_APP_PASSWORD'];
+const missingVars = requiredEnvVars.filter(varName => !process.env[varName]);
 
-// Punto de entrada para la página principal
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+if (missingVars.length > 0) {
+  console.error('❌ Faltan variables de entorno:', missingVars);
+  process.exit(1);
+}
+
+// ======================
+// 2. Configuración Cohere
+// ======================
+const cohere = new CohereClient({
+  token: process.env.COHERE_API_KEY
 });
 
-const storage = multer.memoryStorage();  // Almacenamiento en memoria
-const upload = multer({
-    storage: storage,
-    limits: { fileSize: 5 * 1024 * 1024 }, // Límite de 5 MB
-});
+// Cargar prompt del sistema
+let systemPrompt;
+try {
+  systemPrompt = fs.readFileSync(
+    path.join(__dirname, 'prompts', 'capsa-assistant.txt'),
+    'utf-8'
+  );
+  console.log('✅ Prompt cargado correctamente');
+} catch (err) {
+  console.error('❌ Error cargando el prompt:', err);
+  process.exit(1);
+}
 
-app.use(express.static(path.join(__dirname, 'public')));
+// ======================
+// 3. Middlewares
+// ======================
+app.use(cors({
+  origin: process.env.ALLOWED_ORIGINS?.split(',') || '*',
+  methods: ['GET', 'POST']
+}));
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(cors());
+app.use(express.static(path.join(__dirname, 'public')));
 
-// Configuración de la conexión con la base de datos MySQL
-const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'CAPSA'
+// ======================
+// 4. Configuración MySQL
+// ======================
+const pool = mysql.createPool({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD || '',
+  database: process.env.DB_NAME,
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0
 });
 
-// Conectar a la base de datos
-db.connect(err => {
-    if (err) {
-        console.error('Error al conectar a MySQL:', err);
-        return;
-    }
-    console.log('Conectado a MySQL');
+// ======================
+// 5. Configuración Multer
+// ======================
+const upload = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 5 * 1024 * 1024 }
 });
 
-// Configuración de nodemailer con tls: rejectUnauthorized: false para ignorar el error de certificado
+// ======================
+// 6. Configuración Nodemailer
+// ======================
 const transporter = nodemailer.createTransport({
-    service: 'gmail', // Cambiar según tu proveedor de correo
-    auth: {
-        user: 'ana47926@gmail.com', // Reemplaza con tu correo
-        pass: 'oakn fklh vsso xvvr'  // Usa un app password o credenciales seguras
-    },
-    tls: {
-        rejectUnauthorized: false  // Ignorar errores de certificados no verificados
-    }
+  service: 'gmail',
+  auth: {
+    user: process.env.GMAIL_USER,
+    pass: process.env.GMAIL_APP_PASSWORD
+  },
+  tls: {
+    rejectUnauthorized: false
+  }
 });
 
-// Función para enviar correos
-const enviarCorreo = (asunto, mensaje, archivosAdjuntos) => {
-    const mailOptions = {
-        from: '"Sistema CAPSA" <ana47926@gmail.com>',
-        to: 'ana47926@gmail.com',
-        subject: asunto,
-        text: mensaje,
-        attachments: archivosAdjuntos, // Aquí se pasan los adjuntos
-    };
+// ======================
+// 7. Funciones Auxiliares
+// ======================
+const sendEmail = async (subject, message, attachments = []) => {
+  const mailOptions = {
+    from: `"Sistema CAPSA" <${process.env.GMAIL_USER}>`,
+    to: process.env.GMAIL_USER,
+    subject,
+    text: message,
+    attachments
+  };
 
-    transporter.sendMail(mailOptions, (err, info) => {
-        if (err) {
-            console.error('Error al enviar correo:', err);
-        } else {
-            console.log('Correo enviado:', info.response);
-        }
-    });
+  try {
+    const info = await transporter.sendMail(mailOptions);
+    console.log('✉️ Correo enviado:', info.response);
+    return true;
+  } catch (err) {
+    console.error('❌ Error enviando correo:', err);
+    return false;
+  }
 };
 
-// Ruta para insertar datos en la tabla `clientes` y enviar correo
-app.post('/clientes', (req, res) => {
-    const { name, phone, correo, servicio, comunicacion, comentarios } = req.body;
+// ======================
+// 8. Endpoints
+// ======================
 
-    const sql = `INSERT INTO cliente 
-                 (nombre, telefono, correo_electronico, servicio, comunicacion, dudas) 
-                 VALUES (?, ?, ?, ?, ?, ?)`;
+// Endpoint de chat con IA
+app.post('/api/chat', async (req, res) => {
+  try {
+    const { question } = req.body;
+    
+    if (!question) {
+      return res.status(400).json({ error: "La pregunta es requerida" });
+    }
 
-    db.query(sql, [name, phone, correo, servicio, comunicacion, comentarios], (err) => {
-        if (err) {
-            console.error('Error al insertar datos en cliente:', err);
-            return res.status(500).send('Error al guardar los datos');
-        }
-
-        const mensaje = `Nuevo registro para aclaración de dudas:
-        Nombre: ${name}
-        Teléfono: ${phone}
-        Correo: ${correo}
-        Servicio: ${servicio}
-        Comunicación: ${comunicacion}
-        Comentarios: ${comentarios}`;
-
-        enviarCorreo('Nuevo registro en Cliente', mensaje);
-        res.send('Datos registrados y correo enviado');
+    const response = await cohere.generate({
+      prompt: `[Responde únicamente en español] ${systemPrompt}\n\nPregunta: ${question}\nRespuesta:`,
+      max_tokens: 300,
+      temperature: 0.5
     });
+
+    const answer = response.generations?.[0]?.text?.trim() || "No pude generar una respuesta";
+    res.json({ answer });
+
+  } catch (error) {
+    console.error('Error en /api/chat:', error);
+    res.status(500).json({ 
+      error: 'Error al procesar tu pregunta',
+      details: process.env.NODE_ENV === 'development' ? error.message : null
+    });
+  }
 });
 
-// Ruta para insertar datos en la tabla `postulaciones` y enviar correo
-app.post(
-    '/postulaciones',
-    upload.fields([
-        { name: 'cv', maxCount: 1 },
-        { name: 'cedulaProfesional', maxCount: 1 },
-    ]),
-    (req, res) => {
-        const {
-            nombreCompleto,
-            correoElectronico,
-            telefonoContacto,
-            direccion,
-            especialidad,
-            horariosDisponibles,
-        } = req.body;
-
-        // Construir el mensaje del correo
-        const mensaje = `
-            Nueva postulación recibida:
-            - Nombre Completo: ${nombreCompleto}
-            - Correo Electrónico: ${correoElectronico}
-            - Teléfono: ${telefonoContacto}
-            - Dirección: ${direccion || 'No especificada'}
-            - Especialidad: ${especialidad || 'No especificada'}
-            - Horarios Disponibles: ${horariosDisponibles || 'No especificados'}`;
-
-        // Preparar los archivos como adjuntos
-        const archivosAdjuntos = [];
-        if (req.files['cv']) {
-            archivosAdjuntos.push({
-                filename: req.files['cv'][0].originalname,
-                content: req.files['cv'][0].buffer,
-            });
-        }
-        if (req.files['cedulaProfesional']) {
-            archivosAdjuntos.push({
-                filename: req.files['cedulaProfesional'][0].originalname,
-                content: req.files['cedulaProfesional'][0].buffer,
-            });
-        }
-        
-        // Enviar el correo
-        enviarCorreo('Nueva Postulación', mensaje, archivosAdjuntos);
-        res.json({ message: "Los datos se han guardado correctamente." });
-
-
-    }
-);
-
-
-// Ruta para insertar datos en la tabla `verificar` y enviar correo
-app.post('/verificar', upload.none(), (req, res) => {
+// Endpoint de Verificación
+app.post('/verificar', upload.none(), async (req, res) => {
+  try {
     const { nombre, correo, telefono } = req.body;
 
-    const sql = `INSERT INTO verificacion 
-                 (nombre, correo, telefono) 
-                 VALUES (?, ?, ?)`;
+    if (!nombre || !correo || !telefono) {
+      return res.status(400).send('Faltan campos obligatorios');
+    }
 
-    db.query(sql, [nombre, correo, telefono], (err) => {
-        if (err) {
-            console.error('Error al insertar datos en verificar:', err);
-            return res.status(500).send('Error al guardar los datos');
-        }
+    await pool.execute(
+      `INSERT INTO verificacion (nombre, correo, telefono) VALUES (?, ?, ?)`,
+      [nombre, correo, telefono]
+    );
 
-        const mensaje = `Nuevo registro para opinión:
-        Nombre: ${nombre}
-        Correo: ${correo}
-        Teléfono: ${telefono}`;
+    await sendEmail('Nueva verificación', `
+      Nombre: ${nombre}
+      Correo: ${correo}
+      Teléfono: ${telefono}
+    `);
 
-        enviarCorreo('Nuevo registro de verificación', mensaje);
-        res.json({ success: 'Datos enviados correctamente' });
+    res.send('Datos registrados correctamente');
 
-    });
+  } catch (error) {
+    console.error('Error en /verificar:', error);
+    res.status(500).send('Error al guardar los datos');
+  }
 });
 
-// Iniciar el servidor en el puerto 3000
+// Endpoint para Clientes
+app.post('/clientes', async (req, res) => {
+  try {
+    const { name, phone, correo, servicio, comunicacion, comentarios } = req.body;
+
+    if (!name || !phone || !correo || !servicio) {
+      return res.status(400).send('Faltan campos obligatorios');
+    }
+
+    const [result] = await pool.execute(
+      `INSERT INTO cliente 
+       (nombre, telefono, correo_electronico, servicio, comunicacion, dudas) 
+       VALUES (?, ?, ?, ?, ?, ?)`,
+      [name, phone, correo, servicio, comunicacion, comentarios || null]
+    );
+
+    const emailMessage = `Nuevo registro:
+      Nombre: ${name}
+      Teléfono: ${phone}
+      Correo: ${correo}
+      Servicio: ${servicio}
+      Comunicación: ${comunicacion}
+      Comentarios: ${comentarios || 'Ninguno'}`;
+
+    await sendEmail('Nuevo registro en Cliente', emailMessage);
+
+    res.send('Registro completado exitosamente');
+
+  } catch (error) {
+    console.error('Error en /clientes:', error);
+    res.status(500).send('Error al guardar los datos');
+  }
+});
+
+// Endpoint para Postulaciones
+app.post('/postulaciones', upload.fields([
+  { name: 'cv', maxCount: 1 },
+  { name: 'cedulaProfesional', maxCount: 1 }
+]), async (req, res) => {
+  try {
+    const { 
+      nombreCompleto,
+      correoElectronico,
+      telefonoContacto,
+      direccion,
+      especialidad,
+      añosExperiencia,
+      horariosDisponibles
+    } = req.body;
+
+    const attachments = [];
+    if (req.files?.cv) {
+      attachments.push({
+        filename: req.files.cv[0].originalname,
+        content: req.files.cv[0].buffer
+      });
+    }
+    if (req.files?.cedulaProfesional) {
+      attachments.push({
+        filename: req.files.cedulaProfesional[0].originalname,
+        content: req.files.cedulaProfesional[0].buffer
+      });
+    }
+
+    const emailMessage = `Nueva postulación:
+      - Nombre: ${nombreCompleto}
+      - Correo: ${correoElectronico}
+      - Teléfono: ${telefonoContacto}
+      - Dirección: ${direccion || 'No especificada'}
+      - Especialidad: ${especialidad}
+      - Años de experiencia: ${añosExperiencia}
+      - Horarios: ${Array.isArray(horariosDisponibles) ? horariosDisponibles.join(', ') : horariosDisponibles}`;
+
+    await sendEmail('Nueva Postulación', emailMessage, attachments);
+
+    res.send('Postulación recibida exitosamente');
+
+  } catch (error) {
+    console.error('Error en /postulaciones:', error);
+    res.status(500).send('Error al procesar la postulación');
+  }
+});
+// ======================
+// 9. Iniciar Servidor
+// ======================
 app.listen(port, () => {
-    console.log(`Servidor escuchando en el puerto ${port}`);
+  console.log(`🚀 Servidor escuchando en http://localhost:${port}`);
+  console.log(`🔮 Endpoint de IA disponible en /api/chat`);
+});
+
+// Manejo de errores
+process.on('unhandledRejection', (err) => {
+  console.error('⚠️ Error no capturado:', err);
+});
+
+process.on('uncaughtException', (err) => {
+  console.error('⚠️ Excepción no capturada:', err);
+  process.exit(1);
 });

@@ -12,6 +12,18 @@ body {
     flex: 1;
 }
 
+/* En tu archivo styles.css */
+select[multiple] {
+    min-height: 120px;
+}
+select[multiple] option {
+    padding: 8px 12px;
+}
+select[multiple] + .form-text {
+    color: #6c757d;
+    font-size: 0.875em;
+}
+
 
 /* Background */
 
