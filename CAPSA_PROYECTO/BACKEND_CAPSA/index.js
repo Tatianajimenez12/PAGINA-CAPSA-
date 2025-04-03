@@ -127,11 +127,12 @@ app.post('/api/chat', async (req, res) => {
     }
 
     const response = await cohere.generate({
-      prompt: `[Responde únicamente en español] ${systemPrompt}\n\nPregunta: ${question}\nRespuesta:`,
-      max_tokens: 300,
-      temperature: 0.5
-    });
-
+        prompt: `[Responde únicamente en español] ${systemPrompt}\n\nPregunta: ${question}\nRespuesta: [RESPUESTA_COMPLETA]`,
+        max_tokens: 100,
+        stop_sequences: ['[RESPUESTA_COMPLETA]'], // Fuerza a terminar en un punto lógico
+        temperature: 0.3
+      });
+      
     const answer = response.generations?.[0]?.text?.trim() || "No pude generar una respuesta";
     res.json({ answer });
 
